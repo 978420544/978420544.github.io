@@ -16,8 +16,7 @@ menus:
   '首页': /
   '归档': /archives
   '简历': /resume
-  '推荐': /
-  '关于阿甘': /
+  '关于': /about
 
 right_menus:
   'RSS': /atom.xml

@@ -64,10 +64,10 @@ hexo.extend.helper.register('site_archive_tree', function(site) {
 			if (lastMonth != null) { 
 				html+='</ul>';
 			}
-			html+='<ul class="archive-posts archive-month" data-date="'+post.date.format('YYYYMM') +'"><h5 class="archive-title"><a class="link-unstyled" href="archives/' + post.date.format('YYYY/MM') +'">'+ post.date.format("MMMM") +'</a></h5>';
+			html+='<ul class="archive-posts archive-month" data-date="'+post.date.format('YYYYMM') +'"><h5 class="archive-title"><a class="link-unstyled" href="/archives/' + post.date.format('YYYY/MM') +'">'+ post.date.format("MMMM") +'</a></h5>';
 			lastMonth = currentMonth;
 		}
-		html+='<li class="archive-post archive-day" data-date="'+post.date.format('YYYYMMDD')+'"><a class="archive-post-title" href="'+post.path +'">'+ post.title +'</a><span class="archive-post-date">' + post.date.format('YYYY.MM.DD') +'</span> </li>';
+		html+='<li class="archive-post archive-day" data-date="'+post.date.format('YYYYMMDD')+'"><a class="archive-post-title" href="/'+post.path +'">'+ post.title +'</a><span class="archive-post-date">' + post.date.format('YYYY.MM.DD') +'</span> </li>';
 	});
 	return html;
 });
