@@ -46,11 +46,13 @@ category_map:
     Java: java
     Spring: spring
     Hexo: hexo
+    Gradle: gradle
     设计模式: design
     生活: life
     互联网: internet
 tag_map:
   Java: java
+  Gradle: gradle
   设计模式: design
   多线程: thread
   Shiro: shiro
