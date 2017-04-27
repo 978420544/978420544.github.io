@@ -28,9 +28,17 @@ a{
 	font-weight: normal;
     color: #159957;
 }
+.menus-main a:hover{
+	font-weight: normal;
+    color: #fff;
+}
 .menus-right a{
 	font-weight: normal;
     color: #159957;
+}
+.menus-right a:hover{
+	font-weight: normal;
+    color: #fff;
 }
 .navigation{
 	margin-bottom: 1rem;
@@ -41,4 +49,63 @@ a{
     border-width: 1px;
     border-radius: 0.3rem;
     transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+}
+.archive-pagination{
+	margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0.3rem;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+	text-align:center;
+}
+.archive-pagination a{
+	color: yellowgreen;
+}
+.widget.tags h3{
+	margin:0;
+}
+.widget.categories h3{
+	margin:0;
+}
+.widget.archives h3{
+	margin:0;
+}
+.archive-year{
+	border-bottom: 1px solid #eef2f8;
+}
+.archive .archive-title {
+    color: #5d686f;
+}
+.archive .archive-title h4{
+	font-size: 1.8rem;
+	letter-spacing: -.04em;
+    line-height: 1.45em;
+    font-weight: 700;
+    font-family: "Open Sans",sans-serif;
+}
+.archive .archive-posts {
+    list-style: none;
+    margin-left: 25px;
+}
+.archive .archive-posts ul {
+    margin: 0 0 .5em;
+}
+
+.archive .archive-posts  li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.archive .archive-posts .archive-post .archive-post-title {
+    margin-left: 20px;
+}
+.archive .archive-posts .archive-post .archive-post-date {
+    color: #9eabb3;
+    margin-left: 10px;
+}
+.link-unstyled{
+	font-weight: bold;
+	font-size: 17px;
 }

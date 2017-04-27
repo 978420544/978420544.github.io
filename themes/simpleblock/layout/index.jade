@@ -80,7 +80,10 @@ block body
     .article-widget
       strong 归档 #{page.year} 年 #{page.month} 月
 
-  if page.posts
+  if is_archive() && !(page.year || page.month)
+    article
+      .archive_tree!=site_archive_tree(site)
+  else if page.posts
     - page.posts.each(function(post) {
       +article(post)
     - });

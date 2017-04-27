@@ -3,7 +3,7 @@ google_analytics:
 duoshuo:
 
 ## Meta
-rss: https://github.com/978420544/978420544.github.io/index.html
+rss: https://978420544.github.io/atom.xml
 favicon: /favicon.png
 icon: /favicon.png
 source_url: https://github.com/978420544/978420544.github.io/tree/source/source/
@@ -14,7 +14,7 @@ license:
 ## Menus
 menus:
   '首页': /
-  '分类': /
+  '归档': /archives
   '简历': /resume
   '推荐': /
   '关于阿甘': /

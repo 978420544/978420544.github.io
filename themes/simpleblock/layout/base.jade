@@ -14,13 +14,19 @@ mixin widget-inter(widget)
 mixin widget(widget)
   if widget.tags
     .widget.tags
-      != list_tags({show_count: false})
+       h3 标签
+       hr
+       != list_tags({show_count: false})
   else if widget.categories
     .widget.categories
-      != list_categories({show_count: false})
+       h3 分类
+       hr 
+       != list_categories({show_count: false})
   else if widget.archives
     .widget.archives
-      != list_archives()
+       h3 归档
+       hr 
+       != list_archives()
   else if widget.copyright
     .widget.text-content
       p
@@ -40,7 +46,8 @@ html
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='baidu-site-verification' content='ONkLdYwC1E')
+    meta(name='baidu-site-verification' content='nWXA5pz9OB"')
+    meta(name='google-site-verification' content='GV1JH1LWgxtYEzh1ZspR37dC-o6YZWuEfgCQLPnAAMM')
     if theme.favicon
       link(rel='icon', href=theme.favicon)
     if theme.rss
