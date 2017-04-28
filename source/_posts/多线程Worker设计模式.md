@@ -19,8 +19,7 @@ Master2Worker模式是比较常见的并行多线程模式之一。系统主要�
 <center>![Master2Worker](/images/Master2Worker.png)</center>
 
 #### Master
-
-```
+```java
 package com.demo.master2worker;
 
 import java.util.HashMap;
@@ -75,8 +74,7 @@ public class Master {
 ```
 
 #### Worker
-
-```
+```java
 import java.util.Map;
 import java.util.Queue;
 
@@ -116,8 +114,7 @@ public class Worker implements Runnable {
 ```
 
 #### PlusWorker
-
-```
+```java
 public class PlusWorker extends Worker { // 求立方和
 	@Override
 	public Object handle(Object input) {
@@ -128,8 +125,7 @@ public class PlusWorker extends Worker { // 求立方和
 ```
 
 #### Application
-
-```
+```java
 import java.util.Map;
 import java.util.Set;
 
@@ -204,8 +200,7 @@ Processor：实现处理加工传入的task数据，加工完成后触发fireEve
 通过ConfigurableWorker的管理，可随时更换具体的Processor和Task，可实现对应的流水线式的处理和Map2Reduce流水处理，可以添加不同的Listener进行不同的监听，可以使用concurrent包下面的map、list防止对应的并发问题。
 
 #### WorkTask
-
-```
+```java
 import java.util.concurrent.Future;
 
 public abstract class WorkerTask<T> implements Future<T> {
@@ -248,8 +243,7 @@ public abstract class WorkerTask<T> implements Future<T> {
 ```
 
 #### WorkEvent
-
-```
+```java
 public enum WorkerEvent {
     TASK_COMPLETE,
     TASK_FAILED;
@@ -258,8 +252,7 @@ public enum WorkerEvent {
 ```
 
 #### WorkListener
-
-```
+```java
 import java.util.List;
 
 import com.majingyang.qctry.flowworker.WorkerEvent;
@@ -272,16 +265,14 @@ public interface WorkerListener {
 ```
 
 #### TaskProcessor
-
-```
+```java
 public interface TaskProcessor {
     void process(WorkerTask<?> task);
 }
 ```
 
 #### ConfigurableWorker
-
-```
+```java
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -419,8 +410,7 @@ taskQueue.size());
 ```
 
 #### LinearURLMiningMain
-
-```
+```java
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -525,7 +515,7 @@ Map2ReduceWorker设计模式基于Google的MapReduce实现提高分布式效率�
 <center>![](/images/Map2Reduce.png)</center>
 
 #### Map2ReduceConnector(监听Map完成，加入Reduce队列)
-```
+```java
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -558,7 +548,7 @@ public class Map2ReduceConnector implements WorkerListener {
 }
 ```
 #### MapReducePageURLMiningTask(Map2ReduceTask)
-```
+```java
 import java.util.HashSet;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -636,7 +626,7 @@ public class MapReducePageURLMiningTask extends WorkerTask<HashSet<String>> {
 }
 ```
 #### MapReduceURLMiningMain(主任务监听器和程序入口)
-```
+```java
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -784,7 +774,7 @@ public class MapReduceURLMiningMain implements WorkerListener {
 }
 ```
 #### PageContentFetchProcessor(MapProcessor)
-```
+```java
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -842,7 +832,7 @@ public class PageContentFetchProcessor implements TaskProcessor {
 }
 ```
 ### URLMatchingProcessor(ReduceProcessor)
-```
+```java
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

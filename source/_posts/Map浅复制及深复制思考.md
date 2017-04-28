@@ -15,7 +15,7 @@ categories:
 #### 通用点
 实现Cloneable接口，实现clone方法
 #### 浅复制
-```
+```java
 @Override
 protected Object clone(){
     Object o = null;
@@ -29,7 +29,7 @@ protected Object clone(){
 ```
 #### 深复制
 ##### 实现接口Cloneable,Serializable
-```
+```java
 public Object deepClone()throws Exception{
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -44,20 +44,20 @@ public Object deepClone()throws Exception{
 浅复制不能复制对象包含的引用对象，深复制则是所有的对象都会进行复制
 #### Map的引用
 Map的引用改变其中一个将改变另一个Map的内容
-```
+```java
 Map map=new HashMap<String,Object>();
 Map map2=map;
 map2.put("name","mjy");
 ```
 #### Map的浅复制
-```
+```java
 Map map=new HashMap<String,Object>();
 Map map2=new HashMap<String,Object>();
 map2.putAll(map);
 map2.put("name","mjy");
 ```
 #### Map的深复制
-```
+```java
 public static <T extends Serializable> T clone(T obj){
     T clonedObj = null;
     try {

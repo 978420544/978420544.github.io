@@ -4,6 +4,68 @@
 
     
   <url>
+    <loc>http://978420544.github.io/2017/04/27/Gradle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/</loc>
+    <lastmod>2017-04-28T06:58:00.646Z</lastmod>
+    <data>
+        <display>
+        <title>Gradle学习笔记@2</title>
+        <pubTime>2017-04-27T10:02:16.000Z</pubTime>
+        
+        <tag>Gradle</tag>
+         
+         
+           
+             
+              <breadCrumb title="Gradle" url="http://978420544.github.io/categories/gradle/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://978420544.github.io/2017/03/29/%E5%A4%9A%E7%BA%BF%E7%A8%8BWorker%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-04-28T06:54:37.670Z</lastmod>
+    <data>
+        <display>
+        <title>多线程Worker设计模式</title>
+        <pubTime>2017-03-29T09:37:14.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>多线程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://978420544.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://978420544.github.io/2017/04/07/Map%E6%B5%85%E5%A4%8D%E5%88%B6%E5%8F%8A%E6%B7%B1%E5%A4%8D%E5%88%B6%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2017-04-28T06:51:51.991Z</lastmod>
+    <data>
+        <display>
+        <title>Map浅复制及深复制思考</title>
+        <pubTime>2017-04-07T03:50:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://978420544.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://978420544.github.io/2017/04/27/Gradle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/</loc>
     <lastmod>2017-04-27T07:26:14.605Z</lastmod>
     <data>
@@ -23,28 +85,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://978420544.github.io/2017/03/29/%E5%A4%9A%E7%BA%BF%E7%A8%8BWorker%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2017-04-25T10:10:32.683Z</lastmod>
-    <data>
-        <display>
-        <title>多线程Worker设计模式</title>
-        <pubTime>2017-03-29T09:37:14.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>多线程</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://978420544.github.io/categories/java/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://978420544.github.io/2017/04/25/Spring%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%EF%BC%882%EF%BC%89/</loc>
@@ -156,26 +196,6 @@
            
              
               <breadCrumb title="Spring" url="http://978420544.github.io/categories/spring/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://978420544.github.io/2017/04/07/Map%E6%B5%85%E5%A4%8D%E5%88%B6%E5%8F%8A%E6%B7%B1%E5%A4%8D%E5%88%B6%E6%80%9D%E8%80%83/</loc>
-    <lastmod>2017-04-24T01:40:37.140Z</lastmod>
-    <data>
-        <display>
-        <title>Map浅复制及深复制思考</title>
-        <pubTime>2017-04-07T03:50:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://978420544.github.io/categories/java/"/>
           
         </display>
     </data>
