@@ -13,6 +13,7 @@ timezone:
 
 #博客地址,与申请的GitHub一致
 url: http://978420544.github.io
+baiduUrl: http://agandeboke.coding.me
 root: /
 #博客链接格式
 permalink: :year/:month/:day/:title/
