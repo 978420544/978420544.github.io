@@ -48,6 +48,7 @@ category_map:
     Spring: spring
     Hexo: hexo
     Gradle: gradle
+    Bug笔记: bug
     设计模式: design
     生活: life
     互联网: internet
@@ -64,6 +65,7 @@ tag_map:
   生活: life
   职场: work
   鸡汤: soul
+  Bug: bug
 
 #日期格式
 date_format: YYYY-MM-DD

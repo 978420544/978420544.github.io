@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://978420544.github.io/"/>
-  <updated>2017-04-28T06:58:00.646Z</updated>
+  <updated>2017-05-05T03:48:38.313Z</updated>
   <id>http://978420544.github.io/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>支付平台开发--IOException : DerInputStream.getLength(): lengthTag=127, too big.</title>
+    <link href="http://978420544.github.io/2017/05/05/%E6%94%AF%E4%BB%98%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91-IOException-DerInputStream-getLength-lengthTag-127-too-big/"/>
+    <id>http://978420544.github.io/2017/05/05/支付平台开发-IOException-DerInputStream-getLength-lengthTag-127-too-big/</id>
+    <published>2017-05-05T03:45:03.000Z</published>
+    <updated>2017-05-05T03:48:38.313Z</updated>
+    
+    <content type="html"><![CDATA[<p>支付平台开发：IOException : DerInputStream.getLength(): lengthTag=127, too big.</p>
+<p>原因：加密的私钥没有设置</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;支付平台开发：IOException : DerInputStream.getLength(): lengthTag=127, too big.&lt;/p&gt;
+&lt;p&gt;原因：加密的私钥没有设置&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="Bug笔记" scheme="http://978420544.github.io/categories/bug/"/>
+    
+    
+      <category term="Java" scheme="http://978420544.github.io/tags/java/"/>
+    
+      <category term="Bug" scheme="http://978420544.github.io/tags/bug/"/>
+    
+  </entry>
   
   <entry>
     <title>Gradle学习笔记@2</title>

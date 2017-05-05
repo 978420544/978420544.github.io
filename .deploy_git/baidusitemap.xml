@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://agandeboke.coding.me/2017/05/05/%E6%94%AF%E4%BB%98%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91-IOException-DerInputStream-getLength-lengthTag-127-too-big/</loc>
+    <lastmod>2017-05-05T03:48:38.313Z</lastmod>
+    <data>
+        <display>
+        <title>支付平台开发--IOException : DerInputStream.getLength(): lengthTag=127, too big.</title>
+        <pubTime>2017-05-05T03:45:03.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>Bug</tag>
+         
+         
+           
+             
+              <breadCrumb title="Bug笔记" url="http://agandeboke.coding.me/categories/bug/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://agandeboke.coding.me/2017/04/27/Gradle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/</loc>
     <lastmod>2017-04-28T06:58:00.646Z</lastmod>
     <data>
