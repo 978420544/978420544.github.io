@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://978420544.github.io/"/>
-  <updated>2017-05-09T05:50:07.737Z</updated>
+  <updated>2017-05-09T05:54:38.295Z</updated>
   <id>http://978420544.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://978420544.github.io/2017/05/09/%E4%B8%8D%E8%92%9C%E5%AD%90%E5%B0%8F%E7%99%BD%E7%BD%91%E9%A1%B5%E8%AE%A1%E6%95%B0%E5%99%A8%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
     <id>http://978420544.github.io/2017/05/09/不蒜子小白网页计数器使用教程/</id>
     <published>2017-05-09T05:45:23.000Z</published>
-    <updated>2017-05-09T05:50:07.737Z</updated>
+    <updated>2017-05-09T05:54:38.295Z</updated>
     
     <content type="html"><![CDATA[<p>不蒜子是一个极简的网页计数器，因为自己做的静态博客需要用到就把他的js给集成进去，简单说下原理，总访问量和总访客数基于域名一对一对应通过远程的js集成，将数据通过/busuanzi.ibruce.info/busuanzi的访问持久化，即便在次生成文章或者网站，只要链接没有变浏览量还是可以在原有的基础上在次往上加的。</p>
 <h4 id="1-脚本安装"><a href="#1-脚本安装" class="headerlink" title="1. 脚本安装"></a>1. 脚本安装</h4><p>在需要的页面引入这个脚本即可：</p>
@@ -48,10 +48,10 @@
     
       <category term="Hexo" scheme="http://978420544.github.io/categories/hexo/"/>
     
-      <category term="Simpleblock" scheme="http://978420544.github.io/categories/hexo/Simpleblock/"/>
-    
     
       <category term="Hexo" scheme="http://978420544.github.io/tags/hexo/"/>
+    
+      <category term="Simpleblock" scheme="http://978420544.github.io/tags/simpleblock/"/>
     
   </entry>
   
