@@ -103,7 +103,7 @@ task child(dependsOn: helloWorld){
 <center>![child](/images/gradle-child.png)</center>
 
 
-#####　dependsOn用来声明要依赖的对象，但是依赖的对象并不一定存在
+##### dependsOn用来声明要依赖的对象，但是依赖的对象并不一定存在
 
 ```
 task nochild(dependsOn: 'nomjy'){

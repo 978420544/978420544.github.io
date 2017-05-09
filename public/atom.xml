@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://978420544.github.io/"/>
-  <updated>2017-05-05T03:48:38.313Z</updated>
+  <updated>2017-05-09T05:50:07.737Z</updated>
   <id>http://978420544.github.io/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>不蒜子小白网页计数器使用教程</title>
+    <link href="http://978420544.github.io/2017/05/09/%E4%B8%8D%E8%92%9C%E5%AD%90%E5%B0%8F%E7%99%BD%E7%BD%91%E9%A1%B5%E8%AE%A1%E6%95%B0%E5%99%A8%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
+    <id>http://978420544.github.io/2017/05/09/不蒜子小白网页计数器使用教程/</id>
+    <published>2017-05-09T05:45:23.000Z</published>
+    <updated>2017-05-09T05:50:07.737Z</updated>
+    
+    <content type="html"><![CDATA[<p>不蒜子是一个极简的网页计数器，因为自己做的静态博客需要用到就把他的js给集成进去，简单说下原理，总访问量和总访客数基于域名一对一对应通过远程的js集成，将数据通过/busuanzi.ibruce.info/busuanzi的访问持久化，即便在次生成文章或者网站，只要链接没有变浏览量还是可以在原有的基础上在次往上加的。</p>
+<h4 id="1-脚本安装"><a href="#1-脚本安装" class="headerlink" title="1. 脚本安装"></a>1. 脚本安装</h4><p>在需要的页面引入这个脚本即可：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="2-总访问量（算法A）"><a href="#2-总访问量（算法A）" class="headerlink" title="2. 总访问量（算法A）"></a>2. 总访问量（算法A）</h4><p>要显示站点总访问量，复制以下代码添加到你需要显示的位置</p>
+<p>算法A：pv的方式，单个用户连续点击n篇文章，记录n次访问量</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_pv"</span>&gt;</span></div><div class="line">    本站总访问量<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次</div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>美化及其他嵌入的改动，其实只要内层的span就可以，然后用css美化或者做嵌入</p>
+<h4 id="3-总访客数（算法B）"><a href="#3-总访客数（算法B）" class="headerlink" title="3. 总访客数（算法B）"></a>3. 总访客数（算法B）</h4><p>要显示站点总访客数，复制以下代码添加到你需要显示的位置</p>
+<p>算法B：uv的方式，单个用户连续点击n篇文章，只记录1次访客数</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span></div><div class="line">  本站访客数<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>人次</div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>美化及其他嵌入的改动，其实只要内层的span就可以，然后用css美化或者做嵌入</p>
+<h4 id="4-页面或者文章访问量"><a href="#4-页面或者文章访问量" class="headerlink" title="4. 页面或者文章访问量"></a>4. 页面或者文章访问量</h4><p>要显示每篇文章的访问量，复制以下代码添加到你需要显示的位置。</p>
+<p>算法：pv的方式，单个用户点击1篇文章，本篇文章记录1次阅读量</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_page_pv"</span>&gt;</span></div><div class="line">  本文总阅读量<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_page_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次</div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>美化及其他嵌入的改动，其实只要内层的span就可以，然后用css美化或者做嵌入</p>
+<h4 id="5-代码中文字是可以修改的，只要保留id正确即可"><a href="#5-代码中文字是可以修改的，只要保留id正确即可" class="headerlink" title="5. 代码中文字是可以修改的，只要保留id正确即可"></a>5. 代码中文字是可以修改的，只要保留id正确即可</h4><h4 id="6-只计数不显示-只安装脚本代码，不安装标签代码"><a href="#6-只计数不显示-只安装脚本代码，不安装标签代码" class="headerlink" title="6. 只计数不显示,只安装脚本代码，不安装标签代码"></a>6. 只计数不显示,只安装脚本代码，不安装标签代码</h4><h4 id="7-注意"><a href="#7-注意" class="headerlink" title="7. 注意"></a>7. 注意</h4><p>暂时的话，像首页这样的会出现好多文章，不蒜子暂时满足不了这样的需求，原因是同样的文章技术器用的id选择器，一个页面只能有一个，多个也只能显示一个；但是不蒜子正在改进，希望可以越来越好。</p>
+<h4 id="不蒜子交流群（419260983）"><a href="#不蒜子交流群（419260983）" class="headerlink" title="不蒜子交流群（419260983）"></a><a href="http://busuanzi.ibruce.info/" target="_blank" rel="external">不蒜子交流群（419260983）</a></h4>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;不蒜子是一个极简的网页计数器，因为自己做的静态博客需要用到就把他的js给集成进去，简单说下原理，总访问量和总访客数基于域名一对一对应通过远程的js集成，将数据通过/busuanzi.ibruce.info/busuanzi的访问持久化，即便在次生成文章或者网站，只要链接没有
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://978420544.github.io/categories/hexo/"/>
+    
+      <category term="Simpleblock" scheme="http://978420544.github.io/categories/hexo/Simpleblock/"/>
+    
+    
+      <category term="Hexo" scheme="http://978420544.github.io/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>支付平台开发--IOException : DerInputStream.getLength(): lengthTag=127, too big.</title>
@@ -48,7 +88,7 @@
     <link href="http://978420544.github.io/2017/04/27/Gradle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/"/>
     <id>http://978420544.github.io/2017/04/27/Gradle学习笔记-2/</id>
     <published>2017-04-27T10:02:16.000Z</published>
-    <updated>2017-04-28T06:58:00.646Z</updated>
+    <updated>2017-05-08T08:33:12.319Z</updated>
     
     <content type="html"><![CDATA[<p>Gradle中有两个基本的概念：project和task。每个Gradle的构建由一个project构成，它代表着需要被构建的组件或者构建的整个项目。每个project由一个或者多个task组成。task代表着Gradle构建过程中可执行的最小单元。例如当构建一个组件时，可能需要先编译、打包、然后再生成文档或者发布等，这其中的每个步骤都可以定义成一个task。</p>
 <h3 id="1-Task创建及应用"><a href="#1-Task创建及应用" class="headerlink" title="1.Task创建及应用"></a>1.Task创建及应用</h3><h4 id="1-1-HelloWorld创建及源码详解"><a href="#1-1-HelloWorld创建及源码详解" class="headerlink" title="1.1 HelloWorld创建及源码详解"></a>1.1 HelloWorld创建及源码详解</h4><p>task的doLast、doFirst、及&lt;&lt;使用;doLast意思是定义一个行为(映射Gradle中的Action类)，放在当前task的最后，类似的，还有doFirst,表示将定义的行为放在当前task最前面,&lt;&lt;仅仅是doLast的一个别名。</p>
@@ -71,8 +111,7 @@
 <center><img src="/images/gradle-child.png" alt="child"></center>
 
 
-<p>#####　dependsOn用来声明要依赖的对象，但是依赖的对象并不一定存在</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">task</span> nochild(dependsOn: <span class="string">'nomjy'</span>)&#123;</div><div class="line">    <span class="keyword">doLast</span>&#123;</div><div class="line">	  <span class="keyword">println</span> <span class="string">"I'm nomjy of nochild!"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">task</span> nomjy&#123;</div><div class="line">     <span class="keyword">doLast</span>&#123;</div><div class="line">	  <span class="keyword">println</span> <span class="string">"I'm nomjy!"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="dependsOn用来声明要依赖的对象，但是依赖的对象并不一定存在"><a href="#dependsOn用来声明要依赖的对象，但是依赖的对象并不一定存在" class="headerlink" title="dependsOn用来声明要依赖的对象，但是依赖的对象并不一定存在"></a>dependsOn用来声明要依赖的对象，但是依赖的对象并不一定存在</h5><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">task</span> nochild(dependsOn: <span class="string">'nomjy'</span>)&#123;</div><div class="line">    <span class="keyword">doLast</span>&#123;</div><div class="line">	  <span class="keyword">println</span> <span class="string">"I'm nomjy of nochild!"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">task</span> nomjy&#123;</div><div class="line">     <span class="keyword">doLast</span>&#123;</div><div class="line">	  <span class="keyword">println</span> <span class="string">"I'm nomjy!"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <center><img src="/images/gradle-nochild.png" alt="nochild"></center>
 
 

@@ -32,7 +32,12 @@ mixin article(post)
             li
               a(href=url_for(category.path))= category.name
           - });
-
+      
+      if is_post()
+        time.right
+          span#busuanzi_container_page_pv
+            | &nbsp&nbsp
+            span#busuanzi_value_page_pv
       if post.tags
         ul.tags.right
           - post.tags.each(function(tag) {
@@ -67,6 +72,12 @@ block body
   for banner in formatArray(theme.banners)
     .article-widget
       +widget-inter(banner)
+      span#busuanzi_container_site_pv
+        | 总访问量&nbsp&nbsp
+        span#busuanzi_value_site_pv
+        br
+        | 总访客数&nbsp&nbsp
+        span#busuanzi_value_site_uv
 
   if is_tag()
     .article-widget

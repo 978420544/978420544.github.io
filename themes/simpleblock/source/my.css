@@ -162,3 +162,8 @@ a{
 .variable{
     color: #066;
 }
+#busuanzi_container_site_pv{
+    font-size: 6px;
+    color: #999;
+    float: right;
+}
