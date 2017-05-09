@@ -66,6 +66,7 @@ tag_map:
   职场: work
   鸡汤: soul
   Bug: bug
+  Xml: xml
 
 #日期格式
 date_format: YYYY-MM-DD
