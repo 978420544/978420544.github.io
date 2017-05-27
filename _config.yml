@@ -67,6 +67,7 @@ tag_map:
   鸡汤: soul
   Bug: bug
   Xml: xml
+  FTP: ftp
 
 #日期格式
 date_format: YYYY-MM-DD
