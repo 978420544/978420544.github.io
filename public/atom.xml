@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://978420544.github.io/"/>
-  <updated>2017-05-27T03:49:03.775Z</updated>
+  <updated>2017-05-27T05:53:09.740Z</updated>
   <id>http://978420544.github.io/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mybatis批量insert总结</title>
+    <link href="http://978420544.github.io/2017/05/27/Mybatis%E6%89%B9%E9%87%8Finsert%E6%80%BB%E7%BB%93/"/>
+    <id>http://978420544.github.io/2017/05/27/Mybatis批量insert总结/</id>
+    <published>2017-05-27T05:51:47.000Z</published>
+    <updated>2017-05-27T05:53:09.740Z</updated>
+    
+    <content type="html"><![CDATA[<p>Mybatis的强大和方便，不用多说，原生的SQL编码可以让程序员几乎不用学习新的语法和模式，同时简化了大量的代码；同样批量处理的insert也是要靠原生的sql打出一片天地。</p>
+<h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addBatchUser"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.List"</span> &gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">separator</span>=<span class="string">";"</span>&gt;</span></div><div class="line">        insert into user(name,age) values(#<span class="template-variable">&#123;item.name&#125;</span><span class="xml">,#</span><span class="template-variable">&#123;item.age&#125;</span><span class="xml">)</span></div><div class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addBatchUser"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.List"</span> &gt;</span></span></div><div class="line">insert into user(name,age) values</div><div class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">separator</span>=<span class="string">","</span>&gt;</span></div><div class="line">        (#<span class="template-variable">&#123;item.name&#125;</span><span class="xml">,#</span><span class="template-variable">&#123;item.age&#125;</span><span class="xml">)</span></div><div class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></div></pre></td></tr></table></figure>
+<h6 id="注意：Mybatis并没有做集合容量的验证，如果集合参数为空或者size为0则生成的sql可能只有”insert-into-user-name-age-values”这样一段或者没有，所以说，写批量sql的时候注意在调用批量方法的地方加入对容量的验证"><a href="#注意：Mybatis并没有做集合容量的验证，如果集合参数为空或者size为0则生成的sql可能只有”insert-into-user-name-age-values”这样一段或者没有，所以说，写批量sql的时候注意在调用批量方法的地方加入对容量的验证" class="headerlink" title="注意：Mybatis并没有做集合容量的验证，如果集合参数为空或者size为0则生成的sql可能只有”insert into user(name,age) values”这样一段或者没有，所以说，写批量sql的时候注意在调用批量方法的地方加入对容量的验证"></a>注意：Mybatis并没有做集合容量的验证，如果集合参数为空或者size为0则生成的sql可能只有”insert into user(name,age) values”这样一段或者没有，所以说，写批量sql的时候注意在调用批量方法的地方加入对容量的验证</h6><h6 id="对Mybatis批量限制的一些想法，批量SQL使用事物提交，同时提交3万左右的数据量，并不会超出限制，因此感觉事物的提交，几万条数据或者更多都没有问题，只是处理时间会越来越长，同时提交3万左右的数据大概在3-4分钟左右，越多会越来越慢，越少则越来越快，如果数据量大的话，尽量考虑用分页的方式提交，分页的量，需要单独测试最合适的量，如果说3万数据量，1000条提交一次，处理的时间会远远小于一次提交的处理时间"><a href="#对Mybatis批量限制的一些想法，批量SQL使用事物提交，同时提交3万左右的数据量，并不会超出限制，因此感觉事物的提交，几万条数据或者更多都没有问题，只是处理时间会越来越长，同时提交3万左右的数据大概在3-4分钟左右，越多会越来越慢，越少则越来越快，如果数据量大的话，尽量考虑用分页的方式提交，分页的量，需要单独测试最合适的量，如果说3万数据量，1000条提交一次，处理的时间会远远小于一次提交的处理时间" class="headerlink" title="对Mybatis批量限制的一些想法，批量SQL使用事物提交，同时提交3万左右的数据量，并不会超出限制，因此感觉事物的提交，几万条数据或者更多都没有问题，只是处理时间会越来越长，同时提交3万左右的数据大概在3-4分钟左右，越多会越来越慢，越少则越来越快，如果数据量大的话，尽量考虑用分页的方式提交，分页的量，需要单独测试最合适的量，如果说3万数据量，1000条提交一次，处理的时间会远远小于一次提交的处理时间"></a>对Mybatis批量限制的一些想法，批量SQL使用事物提交，同时提交3万左右的数据量，并不会超出限制，因此感觉事物的提交，几万条数据或者更多都没有问题，只是处理时间会越来越长，同时提交3万左右的数据大概在3-4分钟左右，越多会越来越慢，越少则越来越快，如果数据量大的话，尽量考虑用分页的方式提交，分页的量，需要单独测试最合适的量，如果说3万数据量，1000条提交一次，处理的时间会远远小于一次提交的处理时间</h6><h5 id="foreach简介"><a href="#foreach简介" class="headerlink" title="foreach简介"></a>foreach简介</h5><p>对于foreach标签的解释参考了网上的资料，具体如下：<br>foreach的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。<br>foreach元素的属性主要有 item，index，collection，open，separator，close。<br>item表示集合中每一个元素进行迭代时的别名，index指定一个名字，用于表示在迭代过程中，每次迭代到的位置，open表示该语句以什么开始，separator表示在每次进行迭代之间以什么符号作为分隔 符，close表示以什么结束，在使用foreach的时候最关键的也是最容易出错的就是collection属性，该属性是必须指定的，但是在不同情况 下，该属性的值是不一样的，主要有一下3种情况：</p>
+<ul>
+<li>1.如果传入的是单参数且参数类型是一个List的时候，collection属性值为list</li>
+<li>2.如果传入的是单参数且参数类型是一个array数组的时候，collection的属性值为array</li>
+<li>3.如果传入的参数是多个的时候，我们就需要把它们封装成一个Map了，当然单参数也可以封装成map</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Mybatis的强大和方便，不用多说，原生的SQL编码可以让程序员几乎不用学习新的语法和模式，同时简化了大量的代码；同样批量处理的insert也是要靠原生的sql打出一片天地。&lt;/p&gt;
+&lt;h4 id=&quot;方法一&quot;&gt;&lt;a href=&quot;#方法一&quot; class=&quot;headerlin
+    
+    </summary>
+    
+      <category term="Mybatis" scheme="http://978420544.github.io/categories/mybatis/"/>
+    
+    
+      <category term="Java" scheme="http://978420544.github.io/tags/java/"/>
+    
+      <category term="Mybatis" scheme="http://978420544.github.io/tags/mybatis/"/>
+    
+  </entry>
   
   <entry>
     <title>关于FTP的上传下载（Java）</title>

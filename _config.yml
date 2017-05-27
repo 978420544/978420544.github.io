@@ -46,6 +46,7 @@ highlight:
 category_map:
     Java: java
     Spring: spring
+    Mybatis: mybatis
     Hexo: hexo
     Gradle: gradle
     Bug笔记: bug
@@ -68,6 +69,7 @@ tag_map:
   Bug: bug
   Xml: xml
   FTP: ftp
+  Mybatis: mybatis
 
 #日期格式
 date_format: YYYY-MM-DD
