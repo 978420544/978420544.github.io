@@ -112,3 +112,7 @@ html
         },
       })
       gitment.render('container')
+    script.
+      if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+         window.Promise = null;
+      }
