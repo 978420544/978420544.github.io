@@ -53,6 +53,7 @@ category_map:
     设计模式: design
     生活: life
     互联网: internet
+    QUARTZ: quartz
 tag_map:
   Java: java
   Gradle: gradle
@@ -70,6 +71,7 @@ tag_map:
   Xml: xml
   FTP: ftp
   Mybatis: mybatis
+  QUARTZ: quartz
 
 #日期格式
 date_format: YYYY-MM-DD
