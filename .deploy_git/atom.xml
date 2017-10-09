@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://978420544.github.io/"/>
-  <updated>2017-10-09T06:23:46.135Z</updated>
+  <updated>2017-10-09T06:35:00.391Z</updated>
   <id>http://978420544.github.io/</id>
   
   <author>
@@ -16,21 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>Java定时任务集群部署方式浅谈</title>
     <link href="http://978420544.github.io/2017/10/09/Java%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F%E6%B5%85%E8%B0%88/"/>
     <id>http://978420544.github.io/2017/10/09/Java定时任务集群部署方式浅谈/</id>
-    <published>2017-10-09T06:22:22.443Z</published>
-    <updated>2017-10-09T06:23:46.135Z</updated>
+    <published>2017-10-09T06:22:22.000Z</published>
+    <updated>2017-10-09T06:35:00.391Z</updated>
     
-    <content type="html"><![CDATA[<hr>
-<p>title: Java定时任务集群部署方式浅谈<br>date: 2017-10-09 14:22:22<br>tags:</p>
-<ul>
-<li>Java</li>
-<li>Spring</li>
-<li>QUARTZ<br>categories:</li>
-<li>QUARTZ</li>
-</ul>
-<p>本篇基于QUARTZ的定时任务，主要介绍一下定时任务的集群部署方式，方法一：QUARTZ支持的集群部署；方法二：通过HTTP调用的集群部署。</p>
+    <content type="html"><![CDATA[<p>本篇基于QUARTZ的定时任务，主要介绍一下定时任务的集群部署方式，方法一：QUARTZ支持的集群部署；方法二：通过HTTP调用的集群部署。</p>
 <h3 id="任务调度-Job"><a href="#任务调度-Job" class="headerlink" title="任务调度 Job"></a>任务调度 Job</h3><p>任务调度 Job 如同数据库作业或 Windows计划任务，是分布式系统中异步和批处理的关键。我们的 Job分为 WinJob 和 HttpJob：WinJob是操作系统级别的定时任务，使用开源的框架Quartz 实现；而 HttpJob 则是采用 URL方式可定时调用微服务。HttpJob 借助集群巧妙地解决了 WinJob的单点和发布问题，并集中管理所有的调度规则，调度规则有简单规则和 Cron 表达式。HttpJob 它简单易用，但间隔时间不能低于 1分钟，毕竟通过 URL 方式来调度并不高效。</p>
 <p>–转自 <a href="http://mp.weixin.qq.com/s/AbUGOWN27FEUPWgDQkF_Dw" target="_blank" rel="external">《可参考的才是有价值的：中小型研发团队架构落地实践18篇，含案例、代码》</a></p>
 <h3 id="QUARTZ模式"><a href="#QUARTZ模式" class="headerlink" title="QUARTZ模式"></a>QUARTZ模式</h3><p>一个Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着其他的节点。这就意味着你必须对每个节点分别启动或停止。Quartz集群中，独立的Quartz节点并不与另一其的节点或是管理节点通信，而是通过相同的数据库表来感知到另一Quartz应用的。</p>
@@ -41,16 +33,19 @@
     
     <summary type="html">
     
-      &lt;hr&gt;
-&lt;p&gt;title: Java定时任务集群部署方式浅谈&lt;br&gt;date: 2017-10-09 14:22:22&lt;br&gt;tags:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Java&lt;/li&gt;
-&lt;li&gt;Spring&lt;/li&gt;
-&lt;li&gt;QUARTZ&lt;br&gt;categories:&lt;/li&gt;
-
+      &lt;p&gt;本篇基于QUARTZ的定时任务，主要介绍一下定时任务的集群部署方式，方法一：QUARTZ支持的集群部署；方法二：通过HTTP调用的集群部署。&lt;/p&gt;
+&lt;h3 id=&quot;任务调度-Job&quot;&gt;&lt;a href=&quot;#任务调度-Job&quot; class=&quot;headerlink&quot; title
     
     </summary>
     
+      <category term="QUARTZ" scheme="http://978420544.github.io/categories/quartz/"/>
+    
+    
+      <category term="Java" scheme="http://978420544.github.io/tags/java/"/>
+    
+      <category term="Spring" scheme="http://978420544.github.io/tags/spring/"/>
+    
+      <category term="QUARTZ" scheme="http://978420544.github.io/tags/quartz/"/>
     
   </entry>
   

@@ -8,6 +8,7 @@ tags:
 categories:
   - QUARTZ
 
+---
 本篇基于QUARTZ的定时任务，主要介绍一下定时任务的集群部署方式，方法一：QUARTZ支持的集群部署；方法二：通过HTTP调用的集群部署。
 
 ### 任务调度 Job
