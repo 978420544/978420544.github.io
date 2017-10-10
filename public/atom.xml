@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://978420544.github.io/"/>
-  <updated>2017-10-10T08:05:04.770Z</updated>
+  <updated>2017-10-10T08:07:46.964Z</updated>
   <id>http://978420544.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://978420544.github.io/2017/10/10/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9CXML/"/>
     <id>http://978420544.github.io/2017/10/10/MySQL数据库查询操作XML/</id>
     <published>2017-10-10T08:03:46.000Z</published>
-    <updated>2017-10-10T08:05:04.770Z</updated>
+    <updated>2017-10-10T08:07:46.964Z</updated>
     
     <content type="html"><![CDATA[<p>MySQL里面有内置的操作xml的函数,分别是ExtractValue()和UpdateXML()函数。</p>
 <h3 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h3><h4 id="EXTRACTVALUE-fiedname-XPathstring"><a href="#EXTRACTVALUE-fiedname-XPathstring" class="headerlink" title="EXTRACTVALUE (fiedname, XPathstring);"></a>EXTRACTVALUE (fiedname, XPathstring);</h4><p>第一个参数：fiedname是String格式，为表中的字段名第二个参数：XPathstring (<a href="http://www.w3school.com.cn/xpath/xpath_nodes.asp" target="_blank" rel="external">Xpath格式的字符串</a>) ，作用：从目标XML中返回包含所查询值的字符串</p>
@@ -41,7 +41,7 @@
       <category term="MYSQL" scheme="http://978420544.github.io/categories/mysql/"/>
     
     
-      <category term="XML" scheme="http://978420544.github.io/tags/xml/"/>
+      <category term="Xml" scheme="http://978420544.github.io/tags/xml/"/>
     
   </entry>
   

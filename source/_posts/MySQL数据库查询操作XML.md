@@ -2,7 +2,7 @@
 title: MySQL数据库查询操作XML
 date: 2017-10-10 16:03:46
 tags:
-  - XML
+  - Xml
 categories:
   - MYSQL
 ---
