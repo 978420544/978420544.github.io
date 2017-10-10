@@ -54,6 +54,7 @@ category_map:
     生活: life
     互联网: internet
     QUARTZ: quartz
+    MYSQL: mysql
 tag_map:
   Java: java
   Gradle: gradle
@@ -72,6 +73,7 @@ tag_map:
   FTP: ftp
   Mybatis: mybatis
   QUARTZ: quartz
+  事物与锁: transaction
 
 #日期格式
 date_format: YYYY-MM-DD

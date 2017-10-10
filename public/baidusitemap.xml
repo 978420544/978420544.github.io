@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://agandeboke.coding.me/2017/10/10/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E7%89%A9%E4%B8%8E%E9%94%81%E3%80%91%E6%B5%85%E8%B0%88-2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AF%BB%E7%8E%B0%E8%B1%A1/</loc>
+    <lastmod>2017-10-10T05:41:40.235Z</lastmod>
+    <data>
+        <display>
+        <title>【数据库事物与锁】浅谈@2：数据库的读现象</title>
+        <pubTime>2017-10-10T05:39:39.000Z</pubTime>
+        
+        <tag>事物与锁</tag>
+         
+         
+           
+             
+              <breadCrumb title="MYSQL" url="http://agandeboke.coding.me/categories/mysql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://agandeboke.coding.me/2017/10/10/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E7%89%A9%E4%B8%8E%E9%94%81%E3%80%91%E6%B5%85%E8%B0%88-1%EF%BC%9A%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/</loc>
+    <lastmod>2017-10-10T04:55:01.481Z</lastmod>
+    <data>
+        <display>
+        <title>【数据库事物与锁】浅谈@1：彻底理解数据库事务</title>
+        <pubTime>2017-10-10T04:49:28.000Z</pubTime>
+        
+        <tag>事物与锁</tag>
+         
+         
+           
+             
+              <breadCrumb title="MYSQL" url="http://agandeboke.coding.me/categories/mysql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://agandeboke.coding.me/2017/10/09/Java%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F%E6%B5%85%E8%B0%88/</loc>
     <lastmod>2017-10-09T06:35:00.391Z</lastmod>
     <data>
