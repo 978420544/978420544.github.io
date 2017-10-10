@@ -74,6 +74,7 @@ tag_map:
   Mybatis: mybatis
   QUARTZ: quartz
   事物与锁: transaction
+  XML: xml
 
 #日期格式
 date_format: YYYY-MM-DD

@@ -16,7 +16,7 @@ mixin article(post)
   article
     header
       if page.posts
-        h2
+        h3
           a(href=url_for(post.path))= post.title
       else
         small.right

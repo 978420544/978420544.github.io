@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://978420544.github.io/"/>
-  <updated>2017-10-10T06:06:07.884Z</updated>
+  <updated>2017-10-10T08:05:04.770Z</updated>
   <id>http://978420544.github.io/</id>
   
   <author>
@@ -14,6 +14,262 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL数据库查询操作XML</title>
+    <link href="http://978420544.github.io/2017/10/10/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9CXML/"/>
+    <id>http://978420544.github.io/2017/10/10/MySQL数据库查询操作XML/</id>
+    <published>2017-10-10T08:03:46.000Z</published>
+    <updated>2017-10-10T08:05:04.770Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySQL里面有内置的操作xml的函数,分别是ExtractValue()和UpdateXML()函数。</p>
+<h3 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h3><h4 id="EXTRACTVALUE-fiedname-XPathstring"><a href="#EXTRACTVALUE-fiedname-XPathstring" class="headerlink" title="EXTRACTVALUE (fiedname, XPathstring);"></a>EXTRACTVALUE (fiedname, XPathstring);</h4><p>第一个参数：fiedname是String格式，为表中的字段名第二个参数：XPathstring (<a href="http://www.w3school.com.cn/xpath/xpath_nodes.asp" target="_blank" rel="external">Xpath格式的字符串</a>) ，作用：从目标XML中返回包含所查询值的字符串</p>
+<h4 id="UPDATEXML-fiedname-XPathstring-new-value"><a href="#UPDATEXML-fiedname-XPathstring-new-value" class="headerlink" title="UPDATEXML (fiedname, XPathstring,new_value)"></a>UPDATEXML (fiedname, XPathstring,new_value)</h4><p>第一个参数：fiedname是String格式，为表中的字段名第二个参数：XPathstring (Xpath格式的字符串)<br>第三个参数：new_value，String格式，替换查找到的符合条件的数据 作用：改变文档中符合条件的节点的值。</p>
+<h4 id="示例如下"><a href="#示例如下" class="headerlink" title="示例如下"></a>示例如下</h4><figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> extractvalue(testxml,<span class="string">'/Student/Class/Name[self:text()="</span>zhangsan<span class="string">"]'</span></div><div class="line"></div><div class="line"><span class="number">2.</span> extractvalue(testxml,<span class="string">'/Student/Class/Name'</span>)=<span class="string">'zhangsan'</span></div><div class="line"></div><div class="line"><span class="number">3.</span> extractvalue(testxml,<span class="string">'/*/*/Name'</span>)=<span class="string">'zhangsan'</span></div></pre></td></tr></table></figure>
+<p>方法作用如下：<br>1和2 找出Student节点下Class节点下的Name节点内容等于”zhangsan”的数据<br>3 找出所有的第三级节点Name等于”zhangsan”的数据</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Updatexml(<span class="name">testxml</span>,'/Student/Class/Name[self<span class="symbol">:text</span>()=<span class="string">"zhangsan"</span>]','&lt;Name&gt;updatename&lt;/Name&gt;')</div></pre></td></tr></table></figure>
+<p>方法作用如下：替换对应符合条件数据节点的内容，注意替换的字符串要将对应的节点拼接进字符串中</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL里面有内置的操作xml的函数,分别是ExtractValue()和UpdateXML()函数。&lt;/p&gt;
+&lt;h3 id=&quot;函数语法&quot;&gt;&lt;a href=&quot;#函数语法&quot; class=&quot;headerlink&quot; title=&quot;函数语法&quot;&gt;&lt;/a&gt;函数语法&lt;/h3&gt;&lt;h4 i
+    
+    </summary>
+    
+      <category term="MYSQL" scheme="http://978420544.github.io/categories/mysql/"/>
+    
+    
+      <category term="XML" scheme="http://978420544.github.io/tags/xml/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【数据库事物与锁】浅谈@8：深入理解乐观锁与悲观锁</title>
+    <link href="http://978420544.github.io/2017/10/10/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E7%89%A9%E4%B8%8E%E9%94%81%E3%80%91%E6%B5%85%E8%B0%88-8%EF%BC%9A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E4%B9%90%E8%A7%82%E9%94%81%E4%B8%8E%E6%82%B2%E8%A7%82%E9%94%81/"/>
+    <id>http://978420544.github.io/2017/10/10/【数据库事物与锁】浅谈-8：深入理解乐观锁与悲观锁/</id>
+    <published>2017-10-10T06:46:51.000Z</published>
+    <updated>2017-10-10T06:48:46.672Z</updated>
+    
+    <content type="html"><![CDATA[<p>在深入理解乐观锁与悲观锁一文中我们介绍过锁。本文在这篇文章的基础上，深入分析一下乐观锁的实现机制，介绍什么是CAS、CAS的应用以及CAS存在的问题等。</p>
+<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><p>众所周知，Java是多线程的。但是，Java对多线程的支持其实是一把双刃剑。一旦涉及到多个线程操作共享资源的情况时，处理不好就可能产生线程安全问题。线程安全性可能是非常复杂的，在没有充足的同步的情况下，多个线程中的操作执行顺序是不可预测的。</p>
+<p>Java里面进行多线程通信的主要方式就是共享内存的方式，共享内存主要的关注点有两个：可见性和有序性。加上复合操作的原子性，我们可以认为Java的线程安全性问题主要关注点有3个：可见性、有序性和原子性。</p>
+<p>Java内存模型（JMM）解决了可见性和有序性的问题，而锁解决了原子性的问题。这里不再详细介绍JMM及锁的其他相关知识。但是我们要讨论一个问题，那就是锁到底是不是有利无弊的？</p>
+<h3 id="锁存在的问题"><a href="#锁存在的问题" class="headerlink" title="锁存在的问题"></a>锁存在的问题</h3><p>Java在JDK1.5之前都是靠synchronized关键字保证同步的，这种通过使用一致的锁定协议来协调对共享状态的访问，可以确保无论哪个线程持有共享变量的锁，都采用独占的方式来访问这些变量。独占锁其实就是一种悲观锁，所以可以说synchronized是悲观锁。</p>
+<h4 id="悲观锁机制存在以下问题："><a href="#悲观锁机制存在以下问题：" class="headerlink" title="悲观锁机制存在以下问题："></a>悲观锁机制存在以下问题：</h4><pre><code>在多线程竞争下，加锁、释放锁会导致比较多的上下文切换和调度延时，引起性能问题。
+一个线程持有锁会导致其它所有需要此锁的线程挂起。
+如果一个优先级高的线程等待一个优先级低的线程释放锁会导致优先级倒置，引起性能风险。
+而另一个更加有效的锁就是乐观锁。所谓乐观锁就是，每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。
+</code></pre><p>与锁相比，volatile变量是一个更轻量级的同步机制，因为在使用这些变量时不会发生上下文切换和线程调度等操作，但是volatile不能解决原子性问题，因此当一个变量依赖旧值时就不能使用volatile变量。因此对于同步最终还是要回到锁机制上来。</p>
+<h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>乐观锁（ Optimistic Locking）其实是一种思想。相对悲观锁而言，乐观锁假设认为数据一般情况下不会造成冲突，所以在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测，如果发现冲突了，则让返回用户错误的信息，让用户决定如何去做。</p>
+<p>上面提到的乐观锁的概念中其实已经阐述了他的具体实现细节：主要就是两个步骤：冲突检测和数据更新。其实现方式有一种比较典型的就是Compare and Swap(CAS)。</p>
+<h3 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h3><p>CAS是项乐观锁技术，当多个线程尝试使用CAS同时更新同一个变量时，只有其中一个线程能更新变量的值，而其它线程都失败，失败的线程并不会被挂起，而是被告知这次竞争中失败，并可以再次尝试。</p>
+<p>CAS 操作包含三个操作数 —— 内存位置（V）、预期原值（A）和新值(B)。如果内存位置的值与预期原值相匹配，那么处理器会自动将该位置值更新为新值。否则，处理器不做任何操作。无论哪种情况，它都会在 CAS 指令之前返回该位置的值。（在 CAS 的一些特殊情况下将仅返回 CAS 是否成功，而不提取当前值。）CAS 有效地说明了“我认为位置 V 应该包含值 A；如果包含该值，则将 B 放到这个位置；否则，不要更改该位置，只告诉我这个位置现在的值即可。”这其实和乐观锁的冲突检查+数据更新的原理是一样的。</p>
+<pre><code>这里再强调一下，乐观锁是一种思想。CAS是这种思想的一种实现方式。
+</code></pre><h3 id="Java对CAS的支持"><a href="#Java对CAS的支持" class="headerlink" title="Java对CAS的支持"></a>Java对CAS的支持</h3><p>在JDK1.5 中新增java.util.concurrent(J.U.C)就是建立在CAS之上的。相对于对于synchronized这种阻塞算法，CAS是非阻塞算法的一种常见实现。所以J.U.C在性能上有了很大的提升。</p>
+<p>我们以java.util.concurrent中的AtomicInteger为例，看一下在不使用锁的情况下是如何保证线程安全的。主要理解getAndIncrement方法，该方法的作用相当于 ++i 操作。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">AtomicInteger</span> <span class="keyword">extends</span> <span class="title">Number</span> <span class="title">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> </span>&#123;</div></pre></td></tr></table></figure>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> value;  </div><div class="line"> </div><div class="line">     <span class="keyword">public</span> <span class="keyword">final</span> <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">()</span> </span>&#123;  </div><div class="line">         <span class="keyword">return</span> value;  </div><div class="line">     &#125;  </div><div class="line"> </div><div class="line">     <span class="keyword">public</span> <span class="keyword">final</span> <span class="function"><span class="keyword">int</span> <span class="title">getAndIncrement</span><span class="params">()</span> </span>&#123;  </div><div class="line">         <span class="keyword">for</span> (;;) &#123;  </div><div class="line">             <span class="keyword">int</span> current = get();  </div><div class="line">             <span class="keyword">int</span> next = current + <span class="number">1</span>;  </div><div class="line">            <span class="keyword">if</span> (compareAndSet(current, next))  </div><div class="line">                <span class="keyword">return</span> current;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="function"><span class="keyword">boolean</span> <span class="title">compareAndSet</span><span class="params">(<span class="keyword">int</span> expect, <span class="keyword">int</span> update)</span> </span>&#123;  </div><div class="line">        <span class="function"><span class="keyword">return</span> unsafe.<span class="title">compareAndSwapInt</span><span class="params">(<span class="keyword">this</span>, valueOffset, expect, update)</span></span>;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在没有锁的机制下需要字段value要借助volatile原语，保证线程间的数据是可见的。这样在获取变量的值的时候才能直接读取。然后来看看++i是怎么做到的。</p>
+<p>getAndIncrement采用了CAS操作，每次从内存中读取数据然后将此数据和+1后的结果进行CAS操作，如果成功就返回结果，否则重试直到成功为止。而compareAndSet利用JNI来完成CPU指令的操作。</p>
+<h3 id="ABA问题"><a href="#ABA问题" class="headerlink" title="ABA问题"></a>ABA问题</h3><p>CAS会导致“ABA问题”。</p>
+<p>CAS算法实现一个重要前提需要取出内存中某时刻的数据，而在下时刻比较并替换，那么在这个时间差类会导致数据的变化。</p>
+<p>比如说一个线程one从内存位置V中取出A，这时候另一个线程two也从内存中取出A，并且two进行了一些操作变成了B，然后two又将V位置的数据变成A，这时候线程one进行CAS操作发现内存中仍然是A，然后one操作成功。尽管线程one的CAS操作成功，但是不代表这个过程就是没有问题的。</p>
+<p>部分乐观锁的实现是通过版本号（version）的方式来解决ABA问题，乐观锁每次在执行数据的修改操作时，都会带上一个版本号，一旦版本号和数据的版本号一致就可以执行修改操作并对版本号执行+1操作，否则就执行失败。因为每次操作的版本号都会随之增加，所以不会出现ABA问题，因为版本号只会增加不会减少。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Java中的线程安全问题至关重要，要想保证线程安全，就需要锁机制。锁机制包含两种：乐观锁与悲观锁。悲观锁是独占锁，阻塞锁。乐观锁是非独占锁，非阻塞锁。有一种乐观锁的实现方式就是CAS ，这种算法在JDK 1.5中引入的java.util.concurrent中有广泛应用。但是值得注意的是这种算法会存在ABA问题。</p>
+<h3 id="CAS与对象创建"><a href="#CAS与对象创建" class="headerlink" title="CAS与对象创建"></a>CAS与对象创建</h3><p>另外，CAS还有一个应用，那就是在JVM创建对象的过程中。对象创建在虚拟机中是非常频繁的。即使是仅仅修改一个指针所指向的位置，在并发情况下也不是线程安全的，可能正在给对象A分配内存空间，指针还没来得及修改，对象B又同时使用了原来的指针来分配内存的情况。解决这个问题的方案有两种，其中一种就是采用CAS配上失败重试的方式保证更新操作的原子性。</p>
+<p>–转自 <a href="http://www.cnblogs.com/wang-meng/p/5506951.html" target="_blank" rel="external">《[数据库事务与锁]详解八:底理解数据库事务乐观锁的一种实现方式——CAS》</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在深入理解乐观锁与悲观锁一文中我们介绍过锁。本文在这篇文章的基础上，深入分析一下乐观锁的实现机制，介绍什么是CAS、CAS的应用以及CAS存在的问题等。&lt;/p&gt;
+&lt;h3 id=&quot;线程安全&quot;&gt;&lt;a href=&quot;#线程安全&quot; class=&quot;headerlink&quot; title=&quot;
+    
+    </summary>
+    
+      <category term="MYSQL" scheme="http://978420544.github.io/categories/mysql/"/>
+    
+    
+      <category term="事物与锁" scheme="http://978420544.github.io/tags/transaction/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【数据库事物与锁】浅谈@7：深入理解乐观锁与悲观锁</title>
+    <link href="http://978420544.github.io/2017/10/10/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E7%89%A9%E4%B8%8E%E9%94%81%E3%80%91%E6%B5%85%E8%B0%88-7%EF%BC%9A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E4%B9%90%E8%A7%82%E9%94%81%E4%B8%8E%E6%82%B2%E8%A7%82%E9%94%81/"/>
+    <id>http://978420544.github.io/2017/10/10/【数据库事物与锁】浅谈-7：深入理解乐观锁与悲观锁/</id>
+    <published>2017-10-10T06:46:41.000Z</published>
+    <updated>2017-10-10T06:48:32.749Z</updated>
+    
+    <content type="html"><![CDATA[<p>在数据库的锁机制中介绍过，数据库管理系统（DBMS）中的并发控制的任务是确保在多个事务同时存取数据库中同一数据时不破坏事务的隔离性和统一性以及数据库的统一性。</p>
+<p>乐观并发控制(乐观锁)和悲观并发控制（悲观锁）是并发控制主要采用的技术手段。</p>
+<p>无论是悲观锁还是乐观锁，都是人们定义出来的概念，可以认为是一种思想。其实不仅仅是关系型数据库系统中有乐观锁和悲观锁的概念，像memcache、hibernate、tair等都有类似的概念。</p>
+<p>针对于不同的业务场景，应该选用不同的并发控制方式。所以，不要把乐观并发控制和悲观并发控制狭义的理解为DBMS中的概念，更不要把他们和数据中提供的锁机制（行锁、表锁、排他锁、共享锁）混为一谈。其实，在DBMS中，悲观锁正是利用数据库本身提供的锁机制来实现的。</p>
+<p>下面来分别学习一下悲观锁和乐观锁。</p>
+<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>在关系数据库管理系统里，悲观并发控制（又名“悲观锁”，Pessimistic Concurrency Control，缩写“PCC”）是一种并发控制的方法。它可以阻止一个事务以影响其他用户的方式来修改数据。如果一个事务执行的操作都某行数据应用了锁，那只有当这个事务把锁释放，其他事务才能够执行与该锁冲突的操作。<br>悲观并发控制主要用于数据争用激烈的环境，以及发生并发冲突时使用锁保护数据的成本要低于回滚事务的成本的环境中。</p>
+<p>悲观锁，正如其名，它指的是对数据被外界（包括本系统当前的其他事务，以及来自外部系统的事务处理）修改持保守态度(悲观)，因此，在整个数据处理过程中，将数据处于锁定状态。 悲观锁的实现，往往依靠数据库提供的锁机制 （也只有数据库层提供的锁机制才能真正保证数据访问的排他性，否则，即使在本系统中实现了加锁机制，也无法保证外部系统不会修改数据）</p>
+<p>在数据库中，悲观锁的流程如下：</p>
+<p>在对任意记录进行修改前，先尝试为该记录加上排他锁（exclusive locking）。</p>
+<p>如果加锁失败，说明该记录正在被修改，那么当前查询可能要等待或者抛出异常。 具体响应方式由开发者根据实际需要决定。</p>
+<p>如果成功加锁，那么就可以对记录做修改，事务完成后就会解锁了。</p>
+<p>其间如果有其他对该记录做修改或加排他锁的操作，都会等待我们解锁或直接抛出异常。</p>
+<h4 id="MySQL-InnoDB中使用悲观锁"><a href="#MySQL-InnoDB中使用悲观锁" class="headerlink" title="MySQL InnoDB中使用悲观锁"></a>MySQL InnoDB中使用悲观锁</h4><p>要使用悲观锁，我们必须关闭mysql数据库的自动提交属性，因为MySQL默认使用autocommit模式，也就是说，当你执行一个更新操作后，MySQL会立刻将结果进行提交。set autocommit=0;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//0.开始事务</div><div class="line"><span class="keyword">begin</span>;/<span class="keyword">begin</span> <span class="keyword">work</span>;/<span class="keyword">start</span> <span class="keyword">transaction</span>; (三者选一就可以)</div><div class="line">//1.查询出商品信息</div><div class="line"><span class="keyword">select</span> <span class="keyword">status</span> <span class="keyword">from</span> t_goods <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span> <span class="keyword">for</span> <span class="keyword">update</span>;</div><div class="line">//2.根据商品信息生成订单</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_orders (<span class="keyword">id</span>,goods_id) <span class="keyword">values</span> (<span class="literal">null</span>,<span class="number">1</span>);</div><div class="line">//3.修改商品status为2</div><div class="line"><span class="keyword">update</span> t_goods <span class="keyword">set</span> <span class="keyword">status</span>=<span class="number">2</span>;</div><div class="line">//4.提交事务</div><div class="line"><span class="keyword">commit</span>;/<span class="keyword">commit</span> <span class="keyword">work</span>;</div></pre></td></tr></table></figure>
+<p>上面的查询语句中，我们使用了select…for update的方式，这样就通过开启排他锁的方式实现了悲观锁。此时在t_goods表中，id为1的 那条数据就被我们锁定了，其它的事务必须等本次事务提交之后才能执行。这样我们可以保证当前的数据不会被其它事务修改。</p>
+<p>上面我们提到，使用select…for update会把数据给锁住，不过我们需要注意一些锁的级别，MySQL InnoDB默认行级锁。行级锁都是基于索引的，如果一条SQL语句用不到索引是不会使用行级锁的，会使用表级锁把整张表锁住，这点需要注意。</p>
+<h4 id="优点与不足"><a href="#优点与不足" class="headerlink" title="优点与不足"></a>优点与不足</h4><p>悲观并发控制实际上是“先取锁再访问”的保守策略，为数据处理的安全提供了保证。但是在效率方面，处理加锁的机制会让数据库产生额外的开销，还有增加产生死锁的机会；另外，在只读型事务处理中由于不会产生冲突，也没必要使用锁，这样做只能增加系统负载；还有会降低了并行性，一个事务如果锁定了某行数据，其他事务就必须等待该事务处理完才可以处理那行数。</p>
+<h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><pre><code>在关系数据库管理系统里，乐观并发控制（又名“乐观锁”，Optimistic Concurrency Control，缩写“OCC”）是一种并发控制的方法。它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，正在提交的事务会进行回滚。乐观事务控制最早是由孔祥重（H.T.Kung）教授提出。
+</code></pre><p>乐观锁（ Optimistic Locking ） 相对悲观锁而言，乐观锁假设认为数据一般情况下不会造成冲突，所以在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测，如果发现冲突了，则让返回用户错误的信息，让用户决定如何去做。</p>
+<p>相对于悲观锁，在对数据库进行处理的时候，乐观锁并不会使用数据库提供的锁机制。一般的实现乐观锁的方式就是记录数据版本。</p>
+<pre><code>数据版本,为数据增加的一个版本标识。当读取数据时，将版本标识的值一同读出，数据每更新一次，同时对版本标识进行更新。当我们提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的版本标识进行比对，如果数据库表当前版本号与第一次取出来的版本标识值相等，则予以更新，否则认为是过期数据。
+</code></pre><p>实现数据版本有两种方式，第一种是使用版本号，第二种是使用时间戳。</p>
+<h4 id="使用版本号实现乐观锁"><a href="#使用版本号实现乐观锁" class="headerlink" title="使用版本号实现乐观锁"></a>使用版本号实现乐观锁</h4><p>使用版本号时，可以在数据初始化时指定一个版本号，每次对数据的更新操作都对版本号执行+1操作。并判断当前版本号是不是该数据的最新的版本号。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1.查询出商品信息</div><div class="line"><span class="keyword">select</span> (<span class="keyword">status</span>,<span class="keyword">status</span>,<span class="keyword">version</span>) <span class="keyword">from</span> t_goods <span class="keyword">where</span> <span class="keyword">id</span>=#&#123;<span class="keyword">id</span>&#125;</div><div class="line"><span class="number">2.</span>根据商品信息生成订单</div><div class="line"><span class="number">3.</span>修改商品<span class="keyword">status</span>为<span class="number">2</span></div><div class="line"><span class="keyword">update</span> t_goods </div><div class="line"><span class="keyword">set</span> <span class="keyword">status</span>=<span class="number">2</span>,<span class="keyword">version</span>=<span class="keyword">version</span>+<span class="number">1</span></div><div class="line"><span class="keyword">where</span> <span class="keyword">id</span>=#&#123;<span class="keyword">id</span>&#125; <span class="keyword">and</span> <span class="keyword">version</span>=#&#123;<span class="keyword">version</span>&#125;;</div></pre></td></tr></table></figure>
+<h3 id="优点与不足-1"><a href="#优点与不足-1" class="headerlink" title="优点与不足"></a>优点与不足</h3><p>乐观并发控制相信事务之间的数据竞争(data race)的概率是比较小的，因此尽可能直接做下去，直到提交的时候才去锁定，所以不会产生任何锁和死锁。但如果直接简单这么做，还是有可能会遇到不可预期的结果，例如两个事务都读取了数据库的某一行，经过修改以后写回数据库，这时就遇到了问题。</p>
+<p>–转自 <a href="http://www.cnblogs.com/wang-meng/p/5506943.html" target="_blank" rel="external">《[数据库事务与锁]详解七: 深入理解乐观锁与悲观锁》</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在数据库的锁机制中介绍过，数据库管理系统（DBMS）中的并发控制的任务是确保在多个事务同时存取数据库中同一数据时不破坏事务的隔离性和统一性以及数据库的统一性。&lt;/p&gt;
+&lt;p&gt;乐观并发控制(乐观锁)和悲观并发控制（悲观锁）是并发控制主要采用的技术手段。&lt;/p&gt;
+&lt;p&gt;无论是悲
+    
+    </summary>
+    
+      <category term="MYSQL" scheme="http://978420544.github.io/categories/mysql/"/>
+    
+    
+      <category term="事物与锁" scheme="http://978420544.github.io/tags/transaction/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【数据库事物与锁】浅谈@6：MySQL中的共享锁与排他锁</title>
+    <link href="http://978420544.github.io/2017/10/10/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E7%89%A9%E4%B8%8E%E9%94%81%E3%80%91%E6%B5%85%E8%B0%88-6%EF%BC%9AMySQL%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E9%94%81%E4%B8%8E%E6%8E%92%E4%BB%96%E9%94%81/"/>
+    <id>http://978420544.github.io/2017/10/10/【数据库事物与锁】浅谈-6：MySQL中的共享锁与排他锁/</id>
+    <published>2017-10-10T06:46:25.000Z</published>
+    <updated>2017-10-10T06:48:14.817Z</updated>
+    
+    <content type="html"><![CDATA[<p>在MySQL中的行级锁,表级锁,页级锁中介绍过，行级锁是Mysql中锁定粒度最细的一种锁，行级锁能大大减少数据库操作的冲突。行级锁分为共享锁和排他锁两种，本文将详细介绍共享锁及排他锁的概念、使用方式及注意事项等。</p>
+<h3 id="共享锁-Share-Lock"><a href="#共享锁-Share-Lock" class="headerlink" title="共享锁(Share Lock)"></a>共享锁(Share Lock)</h3><p>共享锁又称读锁，是读取操作创建的锁。其他用户可以并发读取数据，但任何事务都不能对数据进行修改（获取数据上的排他锁），直到已释放所有共享锁。</p>
+<p>如果事务T对数据A加上共享锁后，则其他事务只能对A再加共享锁，不能加排他锁。获准共享锁的事务只能读数据，不能修改数据。</p>
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><pre><code>SELECT ... LOCK IN SHARE MODE;
+</code></pre><p>在查询语句后面增加LOCK IN SHARE MODE，Mysql会对查询结果中的每行都加共享锁，当没有其他线程对查询结果集中的任何一行使用排他锁时，可以成功申请共享锁，否则会被阻塞。其他线程也可以读取使用了共享锁的表，而且这些线程读取的是同一个版本的数据。</p>
+<h3 id="排他锁（eXclusive-Lock）"><a href="#排他锁（eXclusive-Lock）" class="headerlink" title="排他锁（eXclusive Lock）"></a>排他锁（eXclusive Lock）</h3><p>排他锁又称写锁，如果事务T对数据A加上排他锁后，则其他事务不能再对A加任任何类型的封锁。获准排他锁的事务既能读数据，又能修改数据。</p>
+<h4 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h4><pre><code>SELECT ... FOR UPDATE;
+</code></pre><p>在查询语句后面增加FOR UPDATE，Mysql会对查询结果中的每行都加排他锁，当没有其他线程对查询结果集中的任何一行使用排他锁时，可以成功申请排他锁，否则会被阻塞。</p>
+<h3 id="意向锁"><a href="#意向锁" class="headerlink" title="意向锁"></a>意向锁</h3><p>InnoDB还有两个表锁：</p>
+<pre><code>意向共享锁（IS）：表示事务准备给数据行加入共享锁，也就是说一个数据行加共享锁前必须先取得该表的IS锁
+
+意向排他锁（IX）：类似上面，表示事务准备给数据行加入排他锁，说明事务在一个数据行加排他锁前必须先取得该表的IX锁。
+</code></pre><p>意向锁是InnoDB自动加的，不需要用户干预。</p>
+<p>对于insert、update、delete，InnoDB会自动给涉及的数据加排他锁（X）；对于一般的Select语句，InnoDB不会加任何锁，事务可以通过以下语句给显示加共享锁或排他锁。</p>
+<pre><code>共享锁：SELECT ... LOCK IN SHARE MODE;
+
+排他锁：SELECT ... FOR UPDATE;
+</code></pre><p>–转自 <a href="http://www.cnblogs.com/wang-meng/p/5506934.html" target="_blank" rel="external">《[数据库事务与锁]详解六: MySQL中的共享锁与排他锁》</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在MySQL中的行级锁,表级锁,页级锁中介绍过，行级锁是Mysql中锁定粒度最细的一种锁，行级锁能大大减少数据库操作的冲突。行级锁分为共享锁和排他锁两种，本文将详细介绍共享锁及排他锁的概念、使用方式及注意事项等。&lt;/p&gt;
+&lt;h3 id=&quot;共享锁-Share-Lock&quot;&gt;&lt;a
+    
+    </summary>
+    
+      <category term="MYSQL" scheme="http://978420544.github.io/categories/mysql/"/>
+    
+    
+      <category term="事物与锁" scheme="http://978420544.github.io/tags/transaction/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【数据库事物与锁】浅谈@5：MySQL中的行级锁,表级锁,页级锁</title>
+    <link href="http://978420544.github.io/2017/10/10/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E7%89%A9%E4%B8%8E%E9%94%81%E3%80%91%E6%B5%85%E8%B0%88-5%EF%BC%9AMySQL%E4%B8%AD%E7%9A%84%E8%A1%8C%E7%BA%A7%E9%94%81-%E8%A1%A8%E7%BA%A7%E9%94%81-%E9%A1%B5%E7%BA%A7%E9%94%81/"/>
+    <id>http://978420544.github.io/2017/10/10/【数据库事物与锁】浅谈-5：MySQL中的行级锁-表级锁-页级锁/</id>
+    <published>2017-10-10T06:46:07.000Z</published>
+    <updated>2017-10-10T06:48:01.453Z</updated>
+    
+    <content type="html"><![CDATA[<p>在计算机科学中，锁是在执行多线程时用于强行限制资源访问的同步机制，即用于在并发控制中保证对互斥要求的满足。<br>在数据库的锁机制中介绍过，在DBMS中，可以按照锁的粒度把数据库锁分为行级锁(INNODB引擎)、表级锁(MYISAM引擎)和页级锁(BDB引擎 )。</p>
+<h3 id="行级锁"><a href="#行级锁" class="headerlink" title="行级锁"></a>行级锁</h3><p>行级锁是Mysql中锁定粒度最细的一种锁，表示只针对当前操作的行进行加锁。行级锁能大大减少数据库操作的冲突。其加锁粒度最小，但加锁的开销也最大。行级锁分为共享锁和排他锁.</p>
+<h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><p>开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低，并发度也最高。</p>
+<h3 id="表级锁"><a href="#表级锁" class="headerlink" title="表级锁"></a>表级锁</h3><p>表级锁是MySQL中锁定粒度最大的一种锁，表示对当前操作的整张表加锁，它实现简单，资源消耗较少，被大部分MySQL引擎支持。最常使用的MYISAM与INNODB都支持表级锁定。表级锁定分为表共享读锁（共享锁）与表独占写锁（排他锁）。</p>
+<h5 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h5><p>开销小，加锁快；不会出现死锁；锁定粒度大，发出锁冲突的概率最高，并发度最低。</p>
+<h3 id="页级锁"><a href="#页级锁" class="headerlink" title="页级锁"></a>页级锁</h3><p>页级锁是MySQL中锁定粒度介于行级锁和表级锁中间的一种锁。表级锁速度快，但冲突多，行级冲突少，但速度慢。所以取了折衷的页级，一次锁定相邻的一组记录。BDB支持页级锁</p>
+<h5 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h5><p>开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表锁和行锁之间，并发度一般</p>
+<h2 id="MySQL常用存储引擎的锁机制"><a href="#MySQL常用存储引擎的锁机制" class="headerlink" title="MySQL常用存储引擎的锁机制"></a>MySQL常用存储引擎的锁机制</h2><pre><code>MyISAM和MEMORY采用表级锁(table-level locking)
+BDB采用页面锁(page-level locking)或表级锁，默认为页面锁
+InnoDB支持行级锁(row-level locking)和表级锁,默认为行级锁
+</code></pre><h3 id="Innodb中的行锁与表锁"><a href="#Innodb中的行锁与表锁" class="headerlink" title="Innodb中的行锁与表锁"></a>Innodb中的行锁与表锁</h3><p>前面提到过，在Innodb引擎中既支持行锁也支持表锁，那么什么时候会锁住整张表，什么时候或只锁住一行呢？</p>
+<p>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，后者是通过在数据块中对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，InnoDB才使用行级锁，否则，InnoDB将使用表锁！</p>
+<p>在实际应用中，要特别注意InnoDB行锁的这一特性，不然的话，可能导致大量的锁冲突，从而影响并发性能。</p>
+<p>行级锁都是基于索引的，如果一条SQL语句用不到索引是不会使用行级锁的，会使用表级锁。行级锁的缺点是：由于需要请求大量的锁资源，所以速度慢，内存消耗大。</p>
+<h3 id="行级锁与死锁"><a href="#行级锁与死锁" class="headerlink" title="行级锁与死锁"></a>行级锁与死锁</h3><p>MyISAM中是不会产生死锁的，因为MyISAM总是一次性获得所需的全部锁，要么全部满足，要么全部等待。而在InnoDB中，锁是逐步获得的，就造成了死锁的可能。</p>
+<p>在MySQL中，行级锁并不是直接锁记录，而是锁索引。索引分为主键索引和非主键索引两种，如果一条sql语句操作了主键索引，MySQL就会锁定这条主键索引；如果一条语句操作了非主键索引，MySQL会先锁定该非主键索引，再锁定相关的主键索引。 在UPDATE、DELETE操作时，MySQL不仅锁定WHERE条件扫描过的所有索引记录，而且会锁定相邻的键值，即所谓的next-key locking。</p>
+<p>当两个事务同时执行，一个锁住了主键索引，在等待其他相关索引。另一个锁定了非主键索引，在等待主键索引。这样就会发生死锁。</p>
+<p>发生死锁后，InnoDB一般都可以检测到，并使一个事务释放锁回退，另一个获取锁完成事务。</p>
+<hr>
+<p>有多种方法可以避免死锁，这里只介绍常见的三种</p>
+<pre><code>1、如果不同程序会并发存取多个表，尽量约定以相同的顺序访问表，可以大大降低死锁机会。
+2、在同一个事务中，尽可能做到一次锁定所需要的所有资源，减少死锁产生概率；
+3、对于非常容易产生死锁的业务部分，可以尝试使用升级锁定颗粒度，通过表级锁定来减少死锁产生的概率；
+</code></pre><p>–转自 <a href="http://www.cnblogs.com/wang-meng/p/5506927.html" target="_blank" rel="external">《[数据库事务与锁]详解五: MySQL中的行级锁,表级锁,页级锁》</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在计算机科学中，锁是在执行多线程时用于强行限制资源访问的同步机制，即用于在并发控制中保证对互斥要求的满足。&lt;br&gt;在数据库的锁机制中介绍过，在DBMS中，可以按照锁的粒度把数据库锁分为行级锁(INNODB引擎)、表级锁(MYISAM引擎)和页级锁(BDB引擎 )。&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="MYSQL" scheme="http://978420544.github.io/categories/mysql/"/>
+    
+    
+      <category term="事物与锁" scheme="http://978420544.github.io/tags/transaction/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【数据库事物与锁】浅谈@4：数据库的锁机制</title>
+    <link href="http://978420544.github.io/2017/10/10/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E7%89%A9%E4%B8%8E%E9%94%81%E3%80%91%E6%B5%85%E8%B0%88-4%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6/"/>
+    <id>http://978420544.github.io/2017/10/10/【数据库事物与锁】浅谈-4：数据库的锁机制/</id>
+    <published>2017-10-10T06:45:51.000Z</published>
+    <updated>2017-10-10T06:47:47.118Z</updated>
+    
+    <content type="html"><![CDATA[<p>数据库的读现象浅析中介绍过，在并发访问情况下，可能会出现脏读、不可重复读和幻读等读现象，为了应对这些问题，主流数据库都提供了锁机制，并引入了事务隔离级别的概念。</p>
+<h3 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h3><pre><code>在计算机科学，特别是程序设计、操作系统、多处理机和数据库等领域，并发控制（Concurrency control）是确保及时纠正由并发操作导致的错误的一种机制。
+</code></pre><p>数据库管理系统（DBMS）中的并发控制的任务是确保在多个事务同时存取数据库中同一数据时不破坏事务的隔离性和统一性以及数据库的统一性。下面举例说明并发操作带来的数据不一致性问题：</p>
+<p>现有两处火车票售票点，同时读取某一趟列车车票数据库中车票余额为 X。两处售票点同时卖出一张车票，同时修改余额为 X -1写回数据库，这样就造成了实际卖出两张火车票而数据库中的记录却只少了一张。 产生这种情况的原因是因为两个事务读入同一数据并同时修改，其中一个事务提交的结果破坏了另一个事务提交的结果，导致其数据的修改被丢失，破坏了事务的隔离性。并发控制要解决的就是这类问题。</p>
+<p>封锁、时间戳、乐观并发控制(乐观锁)和悲观并发控制（悲观锁）是并发控制主要采用的技术手段。</p>
+<h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><p>当并发事务同时访问一个资源时，有可能导致数据不一致，因此需要一种机制来将数据访问顺序化，以保证数据库数据的一致性。锁就是其中的一种机制。</p>
+<p>在计算机科学中，锁是在执行多线程时用于强行限制资源访问的同步机制，即用于在并发控制中保证对互斥要求的满足。</p>
+<h4 id="锁的分类-oracle"><a href="#锁的分类-oracle" class="headerlink" title="锁的分类(oracle)"></a>锁的分类(oracle)</h4><pre><code>一 按操作划分，可分为DML锁、DDL锁
+二 按锁的粒度划分，可分为表级锁, 页级锁, 行级锁（mysql）
+三 按锁级别划分，可分为共享锁、排它锁
+四 按加锁方式划分，可分为自动锁、显示锁
+五 按使用方式划分，可分为乐观锁, 悲观锁
+</code></pre><p>DML锁（data locks，数据锁），用于保护数据的完整性，其中包括行级锁(Row Locks (TX锁))、表级锁(table lock(TM锁))。 DDL锁（dictionary locks，数据字典锁），用于保护数据库对象的结构，如表、索引等的结构定义。其中包排他DDL锁（Exclusive DDL lock）、共享DDL锁（Share DDL lock）、可中断解析锁（Breakable parse locks）</p>
+<p>–转自 <a href="http://www.cnblogs.com/wang-meng/p/5506823.html" target="_blank" rel="external">《[数据库事务与锁]详解四: 数据库的锁机制》</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;数据库的读现象浅析中介绍过，在并发访问情况下，可能会出现脏读、不可重复读和幻读等读现象，为了应对这些问题，主流数据库都提供了锁机制，并引入了事务隔离级别的概念。&lt;/p&gt;
+&lt;h3 id=&quot;并发控制&quot;&gt;&lt;a href=&quot;#并发控制&quot; class=&quot;headerlink&quot; tit
+    
+    </summary>
+    
+      <category term="MYSQL" scheme="http://978420544.github.io/categories/mysql/"/>
+    
+    
+      <category term="事物与锁" scheme="http://978420544.github.io/tags/transaction/"/>
+    
+  </entry>
   
   <entry>
     <title>【数据库事物与锁】浅谈@3：深入分析事务的隔离级别</title>
@@ -621,316 +877,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Spring源码解读（1）</title>
-    <link href="http://978420544.github.io/2017/04/24/Spring%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%EF%BC%881%EF%BC%89/"/>
-    <id>http://978420544.github.io/2017/04/24/Spring源码解读（1）/</id>
-    <published>2017-04-24T01:56:56.000Z</published>
-    <updated>2017-04-24T01:56:56.797Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>hexo源文件的远程托管解决方案</title>
-    <link href="http://978420544.github.io/2017/04/13/hexo%E6%BA%90%E6%96%87%E4%BB%B6%E7%9A%84%E8%BF%9C%E7%A8%8B%E6%89%98%E7%AE%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    <id>http://978420544.github.io/2017/04/13/hexo源文件的远程托管解决方案/</id>
-    <published>2017-04-13T08:08:11.000Z</published>
-    <updated>2017-04-17T09:57:47.299Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近，使用hexo的simpleblock主题时遇到一个问题，然后就去研究了一下。关于hexo博客Markdown文件的上传同时也可以上传相关的配置文件，用做源文件链接或者在其他的电脑上编辑博客。</p>
-<p>解决方案：在git上面新建一个分支，在这个分支把所有的源文件和配置的文件上传，但是不能上传一些安装的目录和文件，然后在其他地方Clone下来，安装hexo使用，但是不能hexo init，init会把所有的文件初始化。</p>
-<p>gitignore忽略文件：<br>.DS_Store<br>Thumbs.db<br>db.json<br>*.log<br>node_modules/</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近，使用hexo的simpleblock主题时遇到一个问题，然后就去研究了一下。关于hexo博客Markdown文件的上传同时也可以上传相关的配置文件，用做源文件链接或者在其他的电脑上编辑博客。&lt;/p&gt;
-&lt;p&gt;解决方案：在git上面新建一个分支，在这个分支把所有的源文件和
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://978420544.github.io/categories/hexo/"/>
-    
-    
-      <category term="Hexo" scheme="http://978420544.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于Spring定时任务的整理</title>
-    <link href="http://978420544.github.io/2017/04/13/%E5%85%B3%E4%BA%8ESpring%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%95%B4%E7%90%86/"/>
-    <id>http://978420544.github.io/2017/04/13/关于Spring定时任务的整理/</id>
-    <published>2017-04-13T02:54:48.000Z</published>
-    <updated>2017-04-24T01:40:43.843Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近，在做多个第三方支付平台的接入时，发现许多平台的支付交易状态需要异步的去获取，这就需要一个定时任务去做这些交易状态查询接口的调用，然后碰到一系列定时任务的使用问题，因此就对这些定时任务做一些整理和总结。</p>
-<h4 id="当前定时任务的三种产品"><a href="#当前定时任务的三种产品" class="headerlink" title="当前定时任务的三种产品"></a>当前定时任务的三种产品</h4><ul>
-<li>Java自带的java.util.Timer类，这个类允许你调度一个java.util.TimerTask任务。使用这种方式可以让你的程序按照某一个频度执行，但不能在指定时间运行。一般用的较少，这篇文章将不做详细介绍。</li>
-<li><a href="http://www.quartz-scheduler.org/" target="_blank" rel="external">Quartz</a>是一个完全由Java编写的开源作业调度框架，为在Java应用程序中进行作业调度提供了简单却强大的机制。Quartz允许开发人员根据时间间隔来调度作业。它实现了作业和触发器的多对多的关系，还能把多个作业与不同的触发器关联。</li>
-<li>Spring3.0以后自带的task，可以将它看成一个轻量级的Quartz，而且使用起来比Quartz简单许多。</li>
-</ul>
-<h4 id="从作业类的继承方式来讲，可以分为两类："><a href="#从作业类的继承方式来讲，可以分为两类：" class="headerlink" title="从作业类的继承方式来讲，可以分为两类："></a>从作业类的继承方式来讲，可以分为两类：</h4><ul>
-<li>作业类需要继承自特定的作业类基类，如Quartz中需要继承自org.springframework.scheduling.quartz.QuartzJobBean；java.util.Timer中需要继承自java.util.TimerTask。</li>
-<li>作业类即普通的java类，不需要继承自任何基类</li>
-</ul>
-<h4 id="从任务调度的触发时机来分，这里主要是针对作业使用的触发器，主要有以下两种："><a href="#从任务调度的触发时机来分，这里主要是针对作业使用的触发器，主要有以下两种：" class="headerlink" title="从任务调度的触发时机来分，这里主要是针对作业使用的触发器，主要有以下两种："></a>从任务调度的触发时机来分，这里主要是针对作业使用的触发器，主要有以下两种：</h4><ul>
-<li>每隔指定时间则触发一次，在Quartz中对应的触发器为：org.springframework.scheduling.quartz.SimpleTriggerBean</li>
-<li>每到指定时间则触发一次，在Quartz中对应的调度器为：org.springframework.scheduling.quartz.CronTriggerBean</li>
-</ul>
-<h5 id="注：并非每种任务都可以使用这两种触发器，如java-util-TimerTask任务就只能使用第一种。Quartz和spring-task都可以支持这两种触发条件。"><a href="#注：并非每种任务都可以使用这两种触发器，如java-util-TimerTask任务就只能使用第一种。Quartz和spring-task都可以支持这两种触发条件。" class="headerlink" title="注：并非每种任务都可以使用这两种触发器，如java.util.TimerTask任务就只能使用第一种。Quartz和spring task都可以支持这两种触发条件。"></a>注：并非每种任务都可以使用这两种触发器，如java.util.TimerTask任务就只能使用第一种。Quartz和spring task都可以支持这两种触发条件。</h5><hr>
-<h2 id="Quartz和SpringTask"><a href="#Quartz和SpringTask" class="headerlink" title="Quartz和SpringTask"></a>Quartz和SpringTask</h2><ul>
-<li>Quartz的继承方式和非继承方式，SimpleTriggerBean触发器和CronTriggerBean触发器。</li>
-<li>SpringTask的@Scheduled注解方式（cron,fixedRate,fixedDelay）。</li>
-</ul>
-<h3 id="Quartz"><a href="#Quartz" class="headerlink" title="Quartz"></a>Quartz</h3><h4 id="作业类继承自特定的基类-org-springframework-scheduling-quartz-QuartzJobBean"><a href="#作业类继承自特定的基类-org-springframework-scheduling-quartz-QuartzJobBean" class="headerlink" title="作业类继承自特定的基类:org.springframework.scheduling.quartz.QuartzJobBean"></a>作业类继承自特定的基类:org.springframework.scheduling.quartz.QuartzJobBean</h4><h5 id="作业类的继承（一）"><a href="#作业类的继承（一）" class="headerlink" title="作业类的继承（一）"></a>作业类的继承（一）</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.quartz.JobExecutionContext;  </div><div class="line"><span class="keyword">import</span> org.quartz.JobExecutionException;  </div><div class="line"><span class="keyword">import</span> org.springframework.scheduling.quartz.QuartzJobBean;  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Job1</span> <span class="keyword">extends</span> <span class="title">QuartzJobBean</span> </span>&#123;  </div><div class="line">  </div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> timeout;  </div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> i = <span class="number">0</span>;  </div><div class="line"><span class="comment">//调度工厂实例化后，经过timeout时间开始执行调度  </span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTimeout</span><span class="params">(<span class="keyword">int</span> timeout)</span> </span>&#123;  </div><div class="line"><span class="keyword">this</span>.timeout = timeout;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line">* 要调度的具体任务 </div><div class="line">*/  </div><div class="line"><span class="meta">@Override</span>  </div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">executeInternal</span><span class="params">(JobExecutionContext context)</span>  </span></div><div class="line"><span class="keyword">throws</span> JobExecutionException &#123;  </div><div class="line">  System.out.println(<span class="string">"定时任务执行中…"</span>);  </div><div class="line">&#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="配置作业类JobDetailBean（二）"><a href="#配置作业类JobDetailBean（二）" class="headerlink" title="配置作业类JobDetailBean（二）"></a>配置作业类JobDetailBean（二）</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;bean name=<span class="string">"job1"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.scheduling.quartz.JobDetailBean"</span>&gt;  </div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jobClass"</span> <span class="attr">value</span>=<span class="string">"com.gy.Job1"</span> /&gt;</span>  </span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jobDataAsMap"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">map</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"timeout"</span> <span class="attr">value</span>=<span class="string">"0"</span> /&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<h5 id="配置触发器（三）"><a href="#配置触发器（三）" class="headerlink" title="配置触发器（三）"></a>配置触发器（三）</h5><ul>
-<li>SimpleTriggerBean</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"simpleTrigger"</span> <span class="attr">class</span>=<span class="string">"org.springframework.scheduling.quartz.SimpleTriggerBean"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jobDetail"</span> <span class="attr">ref</span>=<span class="string">"job1"</span> /&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"startDelay"</span> <span class="attr">value</span>=<span class="string">"0"</span> /&gt;</span><span class="comment">&lt;!-- 调度工厂实例化后，经过0秒开始执行调度 --&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"repeatInterval"</span> <span class="attr">value</span>=<span class="string">"2000"</span> /&gt;</span><span class="comment">&lt;!-- 每2秒调度一次 --&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>CronTriggerBean</li>
-</ul>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"cronTrigger"</span> <span class="built_in">class</span>=<span class="string">"org.springframework.scheduling.quartz.CronTriggerBean"</span>&gt;  </div><div class="line">&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"jobDetail"</span> <span class="keyword">ref</span>=<span class="string">"job1"</span> /&gt;  </div><div class="line">&lt;!—每天<span class="number">12</span>:<span class="number">00</span>运行一次 <span class="comment">--&gt;  </span></div><div class="line">&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"cronExpression"</span> value=<span class="string">"0 0 12 * * ?"</span> /&gt;  </div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
-<h5 id="配置调度工厂（四）"><a href="#配置调度工厂（四）" class="headerlink" title="配置调度工厂（四）"></a>配置调度工厂（四）</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;bean <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.scheduling.quartz.SchedulerFactoryBean"</span>&gt;  </div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"triggers"</span>&gt;</span>  </span></div><div class="line"><span class="tag">&lt;<span class="name">list</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"cronTrigger"</span> /&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">list</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<h4 id="无需继承的作业类"><a href="#无需继承的作业类" class="headerlink" title="无需继承的作业类"></a>无需继承的作业类</h4><h5 id="作业类（一）"><a href="#作业类（一）" class="headerlink" title="作业类（一）"></a>作业类（一）</h5><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TradeStatusQueryTask</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tradeQuery</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        System.<span class="keyword">out</span>.println(<span class="string">"交易状态查询进程"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="作业类的配置（二）"><a href="#作业类的配置（二）" class="headerlink" title="作业类的配置（二）"></a>作业类的配置（二）</h5><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"tradeStatusScheduling"</span> <span class="built_in">class</span>=<span class="string">"com.mjy.task.TradeStatusQueryTask"</span> /&gt; </div><div class="line"> &lt;bean <span class="built_in">id</span>=<span class="string">"myJobDetail"</span></div><div class="line">    <span class="built_in">class</span>=<span class="string">"org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"</span>&gt;</div><div class="line">  &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"targetObject"</span>&gt;</div><div class="line">   &lt;<span class="keyword">ref</span> bean=<span class="string">"tradeStatusQueryTask"</span> /&gt;</div><div class="line">  &lt;/<span class="keyword">property</span>&gt;</div><div class="line">  &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"targetMethod"</span>&gt;</div><div class="line">   &lt;value&gt;ExecCheckStatusTask&lt;/value&gt;</div><div class="line">  &lt;/<span class="keyword">property</span>&gt;</div><div class="line"> &lt;/bean&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>注册Bean：MethodInvokingJobDetailFactoryBean，有两个关键属性：targetObject指定任务类，targetMethod指定运行的方法。</li>
-</ul>
-<h5 id="作业类的配置（三）"><a href="#作业类的配置（三）" class="headerlink" title="作业类的配置（三）"></a>作业类的配置（三）</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=<span class="string">"myJobTrigger"</span></div><div class="line">   <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.scheduling.quartz.CronTriggerFactoryBean"</span>&gt;</div><div class="line"> <span class="xml"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jobDetail"</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"myJobDetail"</span> /&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cronExpression"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>0 0/2 * * * ?<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>ref参数指定的就是之前配置的作业类的MethodInvokingJobDetailFactoryBean——beanName</li>
-<li>Quartz的作业触发器有两种，分别是<br>org.springframework.scheduling.quartz.SimpleTriggerBean<br>org.springframework.scheduling.quartz.CronTriggerBean，两种触发器都可以使用，这里用的是CronTriggerBean。<h5 id="调度工厂的配置（四）"><a href="#调度工厂的配置（四）" class="headerlink" title="调度工厂的配置（四）"></a>调度工厂的配置（四）</h5></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;bean name=<span class="string">"startQuertz"</span></div><div class="line">   <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.scheduling.quartz.SchedulerFactoryBean"</span>&gt;</div><div class="line"> <span class="xml"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"triggers"</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"myJobTrigger"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>ref参数指定的就是之前配置的触发器的beanName</li>
-</ul>
-<h5 id="启动Spring的容器（五）"><a href="#启动Spring的容器（五）" class="headerlink" title="启动Spring的容器（五）"></a>启动Spring的容器（五）</h5><h3 id="SpringTask"><a href="#SpringTask" class="headerlink" title="SpringTask"></a>SpringTask</h3><ul>
-<li>xml配置方式</li>
-<li>注解配置方式</li>
-<li>命名空间的添加<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">xmlns:</span>task=<span class="string">"http://www.springframework.org/schema/task"</span>   </div><div class="line"><span class="symbol">xsi:</span>schemaLocation=<span class="string">"http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd"</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="xml配置方式"><a href="#xml配置方式" class="headerlink" title="xml配置方式"></a>xml配置方式</h4><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">task</span>:scheduled-tasks&gt;   </div><div class="line">&lt;<span class="keyword">task</span>:scheduled <span class="keyword">ref</span>=<span class="string">"taskJob"</span> method=<span class="string">"job1"</span> cron=<span class="string">"0 * * * * ?"</span>/&gt;   </div><div class="line">&lt;/<span class="keyword">task</span>:scheduled-tasks&gt;</div><div class="line">&lt;<span class="keyword">context</span>:component-scan base-<span class="keyword">package</span>=<span class="string">" com.gy.mytask "</span> /&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>ref参数指定的即作业类，method指定的即需要运行的方法，cron及cronExpression表达式.</li>
-</ul>
-<h4 id="注解配置方式"><a href="#注解配置方式" class="headerlink" title="注解配置方式"></a>注解配置方式</h4><h5 id="配置注解扫描"><a href="#配置注解扫描" class="headerlink" title="配置注解扫描"></a>配置注解扫描</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="string">context:</span>component-scan base-<span class="keyword">package</span>=<span class="string">" com.mjy.task "</span> /&gt;</div><div class="line">&lt;!—开启这个配置，spring才能识别<span class="meta">@Scheduled</span>注解   --&gt;  </div><div class="line">    &lt;<span class="string">task:</span>annotation-driven scheduler=<span class="string">"qbScheduler"</span> mode=<span class="string">"proxy"</span>/&gt;  </div><div class="line">    &lt;<span class="string">task:</span>scheduler id=<span class="string">"qbScheduler"</span> pool-size=<span class="string">"10"</span>/&gt;</div></pre></td></tr></table></figure>
-<h5 id="注解的方式（Scheduled）"><a href="#注解的方式（Scheduled）" class="headerlink" title="注解的方式（Scheduled）"></a>注解的方式（Scheduled）</h5><ul>
-<li>cron：cron表达式</li>
-<li>fixedDelay：表示从上一个任务完成到下一个任务开始的间隔, 单位是毫秒</li>
-<li>fixed-rate：表示从上一个任务开始到下一个任务开始的间隔, 单位是毫秒（如果某次任务开始时上次任务还没有结束，那么在上次任务执行完成时，当前任务会立即执行）</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@Target</span>(&#123;java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.ANNOTATION_TYPE&#125;) </div><div class="line"><span class="variable">@Retention</span>(RetentionPolicy.RUNTIME) </div><div class="line"><span class="variable">@Documented</span> </div><div class="line">public <span class="variable">@interface</span> Scheduled </div><div class="line">&#123; </div><div class="line">  <span class="selector-tag">public</span> <span class="selector-tag">abstract</span> <span class="selector-tag">String</span> <span class="selector-tag">cron</span>(); </div><div class="line">   </div><div class="line">  <span class="selector-tag">public</span> <span class="selector-tag">abstract</span> <span class="selector-tag">long</span> <span class="selector-tag">fixedDelay</span>(); </div><div class="line">   </div><div class="line">  <span class="selector-tag">public</span> <span class="selector-tag">abstract</span> <span class="selector-tag">long</span> <span class="selector-tag">fixedRate</span>(); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<h3 id="Cron表达式"><a href="#Cron表达式" class="headerlink" title="Cron表达式"></a>Cron表达式</h3><h4 id="Cron表达式的格式：秒-分-时-日-月-周-年-可选"><a href="#Cron表达式的格式：秒-分-时-日-月-周-年-可选" class="headerlink" title="Cron表达式的格式：秒 分 时 日 月 周 年(可选)"></a>Cron表达式的格式：秒 分 时 日 月 周 年(可选)</h4><table>
-<thead>
-<tr>
-<th>字段名</th>
-<th>允许的值</th>
-<th>允许的特殊字符</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>秒</td>
-<td>0-59</td>
-<td>, - * /</td>
-</tr>
-<tr>
-<td>分</td>
-<td>0-59</td>
-<td>, - * /</td>
-</tr>
-<tr>
-<td>小时</td>
-<td>0-23</td>
-<td>, - * /  </td>
-</tr>
-<tr>
-<td>日</td>
-<td>1-31</td>
-<td>, - * ? / L W C</td>
-</tr>
-<tr>
-<td>月</td>
-<td>1-12 or JAN-DEC</td>
-<td>, - * /  </td>
-</tr>
-<tr>
-<td>周几</td>
-<td>1-7 or SUN-SAT</td>
-<td>, - * ? / L C #</td>
-</tr>
-<tr>
-<td>年 (可选字段)</td>
-<td>empty, 1970-2099</td>
-<td>, - * /</td>
-</tr>
-</tbody>
-</table>
-<h4 id="Cron表达式符号解释"><a href="#Cron表达式符号解释" class="headerlink" title="Cron表达式符号解释"></a>Cron表达式符号解释</h4><ul>
-<li>“?”字符：表示不确定的值</li>
-<li>“,”字符：指定数个值</li>
-<li>“-”字符：指定一个值的范围</li>
-<li>“/”字符：指定一个值的增加幅度。n/m表示从n开始，每次增加m</li>
-<li>“L”字符：用在日表示一个月中的最后一天，用在周表示该月最后一个星期X</li>
-<li>“W”字符：指定离给定日期最近的工作日(周一到周五)</li>
-<li>“#”字符：表示该月第几个周X。6#3表示该月第3个周五</li>
-</ul>
-<h4 id="Cron表达式范例"><a href="#Cron表达式范例" class="headerlink" title="Cron表达式范例"></a>Cron表达式范例</h4><ul>
-<li>每隔5秒执行一次：<em>/5 </em> <em> </em> * ?</li>
-<li>每隔1分钟执行一次：0 <em>/1 </em> <em> </em> ?</li>
-<li>每天23点执行一次：0 0 23 <em> </em> ?</li>
-<li>每天凌晨1点执行一次：0 0 1 <em> </em> ?</li>
-<li>每月1号凌晨1点执行一次：0 0 1 1 * ?</li>
-<li>每月最后一天23点执行一次：0 0 23 L * ?</li>
-<li>每周星期天凌晨1点实行一次：0 0 1 ? * L</li>
-<li>在26分、29分、33分执行一次：0 26,29,33 <em> </em> * ?</li>
-<li>每天的0点、13点、18点、21点都执行一次：0 0 0,13,18,21 <em> </em> ?</li>
-<li>“0 0 12 <em> </em> ?” 每天中午12点触发</li>
-<li>“0 15 10 ? <em> </em>“ 每天上午10:15触发</li>
-<li>“0 15 10 <em> </em> ?” 每天上午10:15触发</li>
-<li>“0 15 10 <em> </em> ? *” 每天上午10:15触发</li>
-<li>“0 15 10 <em> </em> ? 2005” 2005年的每天上午10:15触发</li>
-<li>“0 <em> 14 </em> * ?” 在每天下午2点到下午2:59期间的每1分钟触发</li>
-<li>“0 0/5 14 <em> </em> ?” 在每天下午2点到下午2:55期间的每5分钟触发</li>
-<li>“0 0/5 14,18 <em> </em> ?” 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发</li>
-<li>“0 0-5 14 <em> </em> ?” 在每天下午2点到下午2:05期间的每1分钟触发</li>
-<li>“0 10,44 14 ? 3 WED” 每年三月的星期三的下午2:10和2:44触发</li>
-<li>“0 15 10 ? * MON-FRI” 周一至周五的上午10:15触发</li>
-<li>“0 15 10 15 * ?” 每月15日上午10:15触发</li>
-<li>“0 15 10 L * ?” 每月最后一日的上午10:15触发</li>
-<li>“0 15 10 ? * 6L” 每月的最后一个星期五上午10:15触发</li>
-<li>“0 15 10 ? * 6L 2002-2005” 2002年至2005年的每月的最后一个星期五上午10:15触发</li>
-<li>“0 15 10 ? * 6#3” 每月的第三个星期五上午10:15触发</li>
-<li>0 6 <em> </em> * 每天早上6点</li>
-<li>0 <em>/2 </em> <em> </em> 每两个小时</li>
-<li>0 23-7/2，8 <em> </em> * 晚上11点到早上8点之间每两个小时，早上八点</li>
-<li>0 11 4 * 1-3 每个月的4号和每个礼拜的礼拜一到礼拜三的早上11点</li>
-<li>0 4 1 1 * 1月1日早上4点</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近，在做多个第三方支付平台的接入时，发现许多平台的支付交易状态需要异步的去获取，这就需要一个定时任务去做这些交易状态查询接口的调用，然后碰到一系列定时任务的使用问题，因此就对这些定时任务做一些整理和总结。&lt;/p&gt;
-&lt;h4 id=&quot;当前定时任务的三种产品&quot;&gt;&lt;a href=
-    
-    </summary>
-    
-      <category term="Spring" scheme="http://978420544.github.io/categories/spring/"/>
-    
-    
-      <category term="Java" scheme="http://978420544.github.io/tags/java/"/>
-    
-      <category term="Spring" scheme="http://978420544.github.io/tags/spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Map浅复制及深复制思考</title>
-    <link href="http://978420544.github.io/2017/04/07/Map%E6%B5%85%E5%A4%8D%E5%88%B6%E5%8F%8A%E6%B7%B1%E5%A4%8D%E5%88%B6%E6%80%9D%E8%80%83/"/>
-    <id>http://978420544.github.io/2017/04/07/Map浅复制及深复制思考/</id>
-    <published>2017-04-07T03:50:00.000Z</published>
-    <updated>2017-04-28T06:51:51.991Z</updated>
-    
-    <content type="html"><![CDATA[<p>文章主要介绍关于深复制和浅复制的原理和不同，然后引出Map浅复制和深复制的用法。</p>
-<h4 id="浅复制与深复制概念"><a href="#浅复制与深复制概念" class="headerlink" title="浅复制与深复制概念"></a>浅复制与深复制概念</h4><ul>
-<li>浅复制： 浅层复制仅仅复制所考虑的对象，而不复制它所引用的对象。</li>
-<li>深复制：深层复制要复制的对象引用的对象都复制一遍。</li>
-</ul>
-<h4 id="通用点"><a href="#通用点" class="headerlink" title="通用点"></a>通用点</h4><p>实现Cloneable接口，实现clone方法</p>
-<h4 id="浅复制"><a href="#浅复制" class="headerlink" title="浅复制"></a>浅复制</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span></span>&#123;</div><div class="line">    Object o = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        o = <span class="keyword">super</span>.clone();</div><div class="line">    &#125; <span class="keyword">catch</span> (CloneNotSupportedException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> o;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="深复制"><a href="#深复制" class="headerlink" title="深复制"></a>深复制</h4><h5 id="实现接口Cloneable-Serializable"><a href="#实现接口Cloneable-Serializable" class="headerlink" title="实现接口Cloneable,Serializable"></a>实现接口Cloneable,Serializable</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">deepClone</span><span class="params">()</span><span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">    ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">    ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(baos);</div><div class="line">    oos.writeObject(<span class="keyword">this</span>);</div><div class="line">    <span class="comment">//从流里读出来</span></div><div class="line">    ByteArrayInputStream bais = <span class="keyword">new</span> ByteArrayInputStream(baos.toByteArray());</div><div class="line">    ObjectInputStream oi=<span class="keyword">new</span> ObjectInputStream(bais);</div><div class="line">    <span class="keyword">return</span>(oi.readObject());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="浅复制与深复制区别"><a href="#浅复制与深复制区别" class="headerlink" title="浅复制与深复制区别"></a>浅复制与深复制区别</h4><p>浅复制不能复制对象包含的引用对象，深复制则是所有的对象都会进行复制</p>
-<h4 id="Map的引用"><a href="#Map的引用" class="headerlink" title="Map的引用"></a>Map的引用</h4><p>Map的引用改变其中一个将改变另一个Map的内容<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Map map=<span class="keyword">new</span> HashMap&lt;String,Object&gt;();</div><div class="line">Map map2=map;</div><div class="line">map2.put(<span class="string">"name"</span>,<span class="string">"mjy"</span>);</div></pre></td></tr></table></figure></p>
-<h4 id="Map的浅复制"><a href="#Map的浅复制" class="headerlink" title="Map的浅复制"></a>Map的浅复制</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Map map=<span class="keyword">new</span> HashMap&lt;String,Object&gt;();</div><div class="line">Map map2=<span class="keyword">new</span> HashMap&lt;String,Object&gt;();</div><div class="line">map2.putAll(map);</div><div class="line">map2.put(<span class="string">"name"</span>,<span class="string">"mjy"</span>);</div></pre></td></tr></table></figure>
-<h4 id="Map的深复制"><a href="#Map的深复制" class="headerlink" title="Map的深复制"></a>Map的深复制</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends Serializable&gt; <span class="function">T <span class="title">clone</span><span class="params">(T obj)</span></span>&#123;</div><div class="line">    T clonedObj = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">    ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">    ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(baos);</div><div class="line">    oos.writeObject(obj);</div><div class="line">    oos.close();</div><div class="line">    </div><div class="line">    ByteArrayInputStream bais = <span class="keyword">new</span> ByteArrayInputStream(baos.toByteArray());</div><div class="line">    ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(bais);</div><div class="line">    clonedObj = (T) ois.readObject();</div><div class="line">    ois.close();</div><div class="line">    </div><div class="line">    &#125;<span class="keyword">catch</span> (Exception e)&#123;</div><div class="line">    e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;文章主要介绍关于深复制和浅复制的原理和不同，然后引出Map浅复制和深复制的用法。&lt;/p&gt;
-&lt;h4 id=&quot;浅复制与深复制概念&quot;&gt;&lt;a href=&quot;#浅复制与深复制概念&quot; class=&quot;headerlink&quot; title=&quot;浅复制与深复制概念&quot;&gt;&lt;/a&gt;浅复制与深复制概念&lt;/
-    
-    </summary>
-    
-      <category term="Java" scheme="http://978420544.github.io/categories/java/"/>
-    
-    
-      <category term="Java" scheme="http://978420544.github.io/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java有继承关系的初始化顺序</title>
-    <link href="http://978420544.github.io/2017/04/06/java%E6%9C%89%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%BA%E5%BA%8F/"/>
-    <id>http://978420544.github.io/2017/04/06/java有继承关系的初始化顺序/</id>
-    <published>2017-04-06T10:41:36.000Z</published>
-    <updated>2017-04-24T01:40:33.108Z</updated>
-    
-    <content type="html"><![CDATA[<p>由于Java 中的一切东西都是对象，所以许多活动 变得更加简单，这个问题便是其中的一例。正如下一章会讲到的那样，每个对象的代码都存在于独立的文件中。除非真的需要代码，否则那个文件是不会载入的。通常，我们可认为除非那个类的一个对象构造完毕，否则代码不会真的载入。由于static 方法存在一些细微的歧义，所以也能认为“类代码在首次使用的时候载入”。首次使用的地方也是static初始化发生的地方。装载的时候，所有static对象和static代码块都会按照本来的顺序初始化（亦即它们在类定义代码里写入的顺序）。当然，static 数据只会初始化一次。</p>
-<h4 id="—《Thinking-in-Java-4》"><a href="#—《Thinking-in-Java-4》" class="headerlink" title="—《Thinking in Java 4》"></a>—《Thinking in Java 4》</h4><p>简要的说就是，在类有继承关系时，类加载器上溯造型，进行相关类的加载工作。</p>
-<h4 id="初始化循序"><a href="#初始化循序" class="headerlink" title="初始化循序"></a>初始化循序</h4><p>含有继承的类的初始化顺序：父类的静态变量-&gt;父类的静态块-&gt;子类静态变量-&gt;子类静态初始化块-&gt;父类变量-&gt;父类初始化块-&gt;父类的构造函数-&gt;子类的变量-&gt;子类初始化块-&gt;子类构造函数;(变量和初始化块之间的先后顺序根据类中的先后位置而定)。</p>
-<h4 id="Parent"><a href="#Parent" class="headerlink" title="Parent"></a>Parent</h4><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> Parent &#123;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> name =getName();</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">String</span> <span class="built_in">width</span>=getWidth();</div><div class="line">	</div><div class="line">	<span class="keyword">static</span> &#123;</div><div class="line">		System.out.<span class="built_in">println</span>(<span class="string">"父类-----"</span>+<span class="string">"静态代码块"</span>);</div><div class="line">	&#125;</div><div class="line">	&#123;</div><div class="line">		System.out.<span class="built_in">println</span>(<span class="string">"父类-----"</span>+<span class="string">"非静态代码块"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> Parent()&#123;</div><div class="line">		System.out.<span class="built_in">println</span>(<span class="string">"父类-----"</span>+<span class="string">"构造方法"</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> getName()&#123;</div><div class="line">		System.out.<span class="built_in">println</span>(<span class="string">"父类-----"</span>+<span class="string">"静态成员变量"</span>);</div><div class="line">		<span class="built_in">return</span> <span class="string">"mjy"</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">String</span> getWidth()&#123;</div><div class="line">		System.out.<span class="built_in">println</span>(<span class="string">"父类-----"</span>+<span class="string">"非静态成员变量"</span>);</div><div class="line">		<span class="built_in">return</span> <span class="string">"mjy"</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="Son"><a href="#Son" class="headerlink" title="Son"></a>Son</h4><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> Son extends Parent &#123;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> age =getAge();</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">String</span> <span class="built_in">height</span>=getHeight();</div><div class="line">	</div><div class="line">	<span class="keyword">static</span> &#123;</div><div class="line">		System.out.<span class="built_in">println</span>(<span class="string">"子类-----"</span>+<span class="string">"静态代码块"</span>);</div><div class="line">	&#125;</div><div class="line">	&#123;</div><div class="line">		System.out.<span class="built_in">println</span>(<span class="string">"子类-----"</span>+<span class="string">"非静态代码块"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> Son()&#123;</div><div class="line">		System.out.<span class="built_in">println</span>(<span class="string">"子类-----"</span>+<span class="string">"构造方法"</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> getAge()&#123;</div><div class="line">		System.out.<span class="built_in">println</span>(<span class="string">"子类-----"</span>+<span class="string">"静态成员变量"</span>);</div><div class="line">		<span class="built_in">return</span> <span class="string">"12"</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">String</span> getHeight()&#123;</div><div class="line">		System.out.<span class="built_in">println</span>(<span class="string">"子类-----"</span>+<span class="string">"非静态成员变量"</span>);</div><div class="line">		<span class="built_in">return</span> <span class="string">"12"</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="Program"><a href="#Program" class="headerlink" title="Program"></a>Program</h4><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Program</span> &#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</div><div class="line">		Son son = <span class="keyword">new</span> Son();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="Console"><a href="#Console" class="headerlink" title="Console"></a>Console</h4><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">父类<span class="comment">-----静态成员变量</span></div><div class="line">父类<span class="comment">-----静态代码块</span></div><div class="line">子类<span class="comment">-----静态成员变量</span></div><div class="line">子类<span class="comment">-----静态代码块</span></div><div class="line">父类<span class="comment">-----非静态成员变量</span></div><div class="line">父类<span class="comment">-----非静态代码块</span></div><div class="line">父类<span class="comment">-----构造方法</span></div><div class="line">子类<span class="comment">-----非静态成员变量</span></div><div class="line">子类<span class="comment">-----非静态代码块</span></div><div class="line">子类<span class="comment">-----构造方法</span></div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;由于Java 中的一切东西都是对象，所以许多活动 变得更加简单，这个问题便是其中的一例。正如下一章会讲到的那样，每个对象的代码都存在于独立的文件中。除非真的需要代码，否则那个文件是不会载入的。通常，我们可认为除非那个类的一个对象构造完毕，否则代码不会真的载入。由于stati
-    
-    </summary>
-    
-      <category term="Java" scheme="http://978420544.github.io/categories/java/"/>
-    
-    
-      <category term="Java" scheme="http://978420544.github.io/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo simpleblock解决首页无法显示摘要的问题</title>
-    <link href="http://978420544.github.io/2017/04/06/hexo-simpleblock%E8%A7%A3%E5%86%B3%E9%A6%96%E9%A1%B5%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E6%91%98%E8%A6%81%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>http://978420544.github.io/2017/04/06/hexo-simpleblock解决首页无法显示摘要的问题/</id>
-    <published>2017-04-06T03:33:21.000Z</published>
-    <updated>2017-04-24T01:40:15.332Z</updated>
-    
-    <content type="html"><![CDATA[<p>博主在使用simpleblock的时候，发现首页和其他的一些地方显示的文章分页中，文章都是全部显示的，这样很影响首页的展示效果，并且不便于读者浏览博客的所有文章，因此我需要写一个摘要来解决这些问题。</p>
-<p>摘要的原理则是利用标签内部的文字做为摘要，把生成后的这些截取下来作为整个文章的摘要显示。</p>
-<h4 id="主题方案和想法"><a href="#主题方案和想法" class="headerlink" title="主题方案和想法"></a>主题方案和想法</h4><p>博主用的是simpleblock的主题方案，尽管还不完善，但是却是我喜欢的，不完善的可以自己去完善，这样才能达到自己想要的目的。</p>
-<h4 id="helper-js"><a href="#helper-js" class="headerlink" title="helper.js"></a>helper.js</h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">hexo.extend.helper.register(<span class="string">'page_excerpt'</span>, <span class="function"><span class="keyword">function</span><span class="params">(post)</span> </span>&#123;</div><div class="line">  <span class="keyword">var</span> p = post ? post : <span class="keyword">this</span>.page;</div><div class="line">  <span class="keyword">var</span> excerpt = p.excerpt;</div><div class="line">  <span class="keyword">if</span> (!excerpt) &#123;</div><div class="line">    <span class="keyword">var</span> pos = p.content.indexOf(<span class="string">'&lt;/p&gt;'</span>);</div><div class="line">    <span class="keyword">if</span> (pos &gt; <span class="number">0</span>)&#123;</div><div class="line">      excerpt = p.content.substring(<span class="number">0</span>, pos + <span class="number">4</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> excerpt;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h4 id="index-jade"><a href="#index-jade" class="headerlink" title="index.jade"></a>index.jade</h4><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> is_home()</div><div class="line">  .markdown-<span class="keyword">body</span>!= page_excerpt(post)</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> is_archive()</div><div class="line">  .markdown-<span class="keyword">body</span>!= page_excerpt(post)</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> is_year()</div><div class="line">  .markdown-<span class="keyword">body</span>!= page_excerpt(post)</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> is_month()</div><div class="line">  .markdown-<span class="keyword">body</span>!= page_excerpt(post)</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> is_category()</div><div class="line">  .markdown-<span class="keyword">body</span>!= page_excerpt(post)</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> is_tag()</div><div class="line">  .markdown-<span class="keyword">body</span>!= page_excerpt(post)</div><div class="line"><span class="keyword">else</span> </div><div class="line">  .markdown-<span class="keyword">body</span>!= post.content</div></pre></td></tr></table></figure>
-<h4 id="赘述"><a href="#赘述" class="headerlink" title="赘述"></a>赘述</h4><p>注册hexo摘要获取方法，首页显示的时候取第一个p标签的内容做为摘要</p>
-<h4 id="自定义hexo主题"><a href="#自定义hexo主题" class="headerlink" title="自定义hexo主题"></a>自定义hexo主题</h4><p>如果对自定义hexo主题有兴趣的话，参考博客–<a href="http://blog.csdn.net/melordljm/article/details/51985129" target="_blank" rel="external">Hexo高级教程之主题开发</a>!</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;博主在使用simpleblock的时候，发现首页和其他的一些地方显示的文章分页中，文章都是全部显示的，这样很影响首页的展示效果，并且不便于读者浏览博客的所有文章，因此我需要写一个摘要来解决这些问题。&lt;/p&gt;
-&lt;p&gt;摘要的原理则是利用标签内部的文字做为摘要，把生成后的这些截取
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://978420544.github.io/categories/hexo/"/>
-    
-    
-      <category term="Hexo" scheme="http://978420544.github.io/tags/hexo/"/>
-    
-      <category term="Simpleblock" scheme="http://978420544.github.io/tags/simpleblock/"/>
     
   </entry>
   
