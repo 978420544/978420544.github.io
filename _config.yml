@@ -55,6 +55,7 @@ category_map:
     互联网: internet
     QUARTZ: quartz
     MYSQL: mysql
+    Sum: sum
 tag_map:
   Java: java
   Gradle: gradle
@@ -74,6 +75,7 @@ tag_map:
   Mybatis: mybatis
   QUARTZ: quartz
   事物与锁: transaction
+  Sum: sum
 
 #日期格式
 date_format: YYYY-MM-DD
