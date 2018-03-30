@@ -71,3 +71,15 @@ hexo.extend.helper.register('site_archive_tree', function(site) {
 	});
 	return html;
 });
+hexo.extend.helper.register('page_url_hash', function(url) {
+	var h = 0, off = 0;  
+    var len = url.length;  
+    for(var i = 0; i < len; i++){  
+        h = 31 * h + url.charCodeAt(off++);  
+    }  
+    var t=-2147483648*2;  
+    while(h>2147483647){  
+      h+=t  
+    }  
+    return h; 
+});
