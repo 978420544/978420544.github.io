@@ -1,4 +1,4 @@
-#博客名称
+﻿#博客名称
 title: 阿甘的博客
 #副标题
 subtitle: 一天进步一点
@@ -112,4 +112,4 @@ deploy:
   #branch: master
   repo:
       github: git@github.com:978420544/978420544.github.io.git,master
-      coding: git@git.coding.net:agandeboke/agandeboke.coding.me.git,master
+      #coding: git@git.coding.net:agandeboke/agandeboke.coding.me.git,master
