@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://978420544.github.io/"/>
-  <updated>2019-05-26T10:58:54.244Z</updated>
+  <updated>2019-05-26T11:26:25.954Z</updated>
   <id>http://978420544.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java 动态代理 InvocationHandler</title>
+    <link href="http://978420544.github.io/2019/05/26/Java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-InvocationHandler/"/>
+    <id>http://978420544.github.io/2019/05/26/Java-动态代理-InvocationHandler/</id>
+    <published>2019-05-26T11:21:40.000Z</published>
+    <updated>2019-05-26T11:26:25.954Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Java-动态代理-InvocationHandler"><a href="#Java-动态代理-InvocationHandler" class="headerlink" title="Java 动态代理 InvocationHandler"></a>Java 动态代理 InvocationHandler</h3><p>Java动态代理机制中的核心类InvocationHandler和Proxy，是实现动态代理的核心。</p><h4 id="1-InvocationHandler"><a href="#1-InvocationHandler" class="headerlink" title="1. InvocationHandler"></a>1. InvocationHandler</h4><h5 id="实现代理机制中处理代理调用处理程序，每一个通过代理生成的对象都会被加入这个接口实现的调用处理程序；实际上就是经过指定的InvocationHandler实现类生成的实例都会调用实现的invoke方法执行代理其他步骤的公共处理逻辑"><a href="#实现代理机制中处理代理调用处理程序，每一个通过代理生成的对象都会被加入这个接口实现的调用处理程序；实际上就是经过指定的InvocationHandler实现类生成的实例都会调用实现的invoke方法执行代理其他步骤的公共处理逻辑" class="headerlink" title="实现代理机制中处理代理调用处理程序，每一个通过代理生成的对象都会被加入这个接口实现的调用处理程序；实际上就是经过指定的InvocationHandler实现类生成的实例都会调用实现的invoke方法执行代理其他步骤的公共处理逻辑"></a>实现代理机制中处理代理调用处理程序，每一个通过代理生成的对象都会被加入这个接口实现的调用处理程序；实际上就是经过指定的InvocationHandler实现类生成的实例都会调用实现的invoke方法执行代理其他步骤的公共处理逻辑</h5><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * proxy:代理类代理的真实代理对象com.sun.proxy.$Proxy0</span></span><br><span class="line"><span class="comment">  * method:我们所要调用某个对象真实的方法的Method对象</span></span><br><span class="line"><span class="comment">  * args:指代代理对象方法传递的参数</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">Object</span> invoke(<span class="keyword">Object</span> proxy, Method method, <span class="keyword">Object</span>[] args)</span><br><span class="line">      <span class="keyword">throws</span> Throwable;</span><br></pre></td></tr></table></figure><h3 id="2-Proxy"><a href="#2-Proxy" class="headerlink" title="2. Proxy"></a>2. Proxy</h3><h5 id="是用来提供创建代理过的对象的实例的类，其中最常用的是newProxyInstance"><a href="#是用来提供创建代理过的对象的实例的类，其中最常用的是newProxyInstance" class="headerlink" title="是用来提供创建代理过的对象的实例的类，其中最常用的是newProxyInstance"></a>是用来提供创建代理过的对象的实例的类，其中最常用的是newProxyInstance</h5><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">Object</span> newProxyInstance(ClassLoader loader, </span><br><span class="line">                                            <span class="keyword">Class</span>&lt;?&gt;[] interfaces, </span><br><span class="line">                                            InvocationHandler h)</span><br></pre></td></tr></table></figure><ul><li>loader：一个classloader对象，定义了由哪个classloader对象对生成的代理类进行加载</li><li>interfaces：一个interface对象数组，表示我们将要给我们的代理对象提供一组什么样的接口，如果我们提供了这样一个接口对象数组，那么也就是声明了代理类实现了这些接口，代理类就可以调用接口中声明的所有方法。</li><li>h：一个InvocationHandler对象，表示的是当动态代理对象调用方法的时候会关联到哪一个InvocationHandler对象上，并最终由其调用。</li><li>getInvocationHandler：返回指定代理实例的调用处理程序</li><li>getProxyClass：给定类加载器和接口数组的代理类的java.lang.Class对象。</li><li>isProxyClass：当且仅当使用getProxyClass方法或newProxyInstance方法将指定的类动态生成为代理类时，才返回true。</li><li>newProxyInstance：返回指定接口的代理类的实例，该接口将方法调用分派给指定的调用处理程序</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Java-动态代理-InvocationHandler&quot;&gt;&lt;a href=&quot;#Java-动态代理-InvocationHandler&quot; class=&quot;headerlink&quot; title=&quot;Java 动态代理 InvocationHandler&quot;&gt;&lt;/a&gt;Java 
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://978420544.github.io/categories/java/"/>
+    
+    
+      <category term="Java" scheme="http://978420544.github.io/tags/java/"/>
+    
+      <category term="Proxy" scheme="http://978420544.github.io/tags/proxy/"/>
+    
+      <category term="反射" scheme="http://978420544.github.io/tags/reflect/"/>
+    
+  </entry>
   
   <entry>
     <title>最近的一些实践和个人博客优化的计划</title>
@@ -510,32 +539,6 @@
       
       
         &lt;p&gt;Gradle中有两个基本的概念：project和task。每个Gradle的构建由一个project构成，它代表着需要被构建的组件或者构建的整个项目。每个project由一个或者多个task组成。task代表着Gradle构建过程中可执行的最小单元。例如当构建一个组件时，可
-      
-    
-    </summary>
-    
-      <category term="Gradle" scheme="http://978420544.github.io/categories/gradle/"/>
-    
-    
-      <category term="Gradle" scheme="http://978420544.github.io/tags/gradle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gradle学习笔记@1</title>
-    <link href="http://978420544.github.io/2017/04/27/Gradle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/"/>
-    <id>http://978420544.github.io/2017/04/27/Gradle学习笔记-1/</id>
-    <published>2017-04-27T07:21:33.000Z</published>
-    <updated>2019-05-26T10:58:54.231Z</updated>
-    
-    <content type="html"><![CDATA[<p>Gradle是一个基于JVM的构建工具，是一款通用灵活的构建工具，支持maven， Ivy仓库，支持传递性依赖管理，而不需要远程仓库或者是pom.xml和ivy.xml配置文件，基于Groovy，build脚本使用Groovy编写。</p><p>和Maven一样，Gradle只是提供了构建项目的一个框架，真正起作用的是Plugin。Gradle在默认情况下为我们提供了许多常用的Plugin，其中包括有构建Java项目的Plugin，还有War，Ear等。与Maven不同的是，Gradle不提供内建的项目生命周期管理，只是java Plugin向Project中添加了许多Task，这些Task依次执行，为我们营造了一种如同Maven般项目构建周期。</p><h3 id="1-下载安装"><a href="#1-下载安装" class="headerlink" title="1.下载安装"></a>1.下载安装</h3><h4 id="Gradle下载地址"><a href="#Gradle下载地址" class="headerlink" title="Gradle下载地址"></a><a href="https://gradle.org/releases" target="_blank" rel="noopener">Gradle下载地址</a></h4><center><img src="/images/gradle-download.png" alt="Complete图文"></center><h4 id="解压gradle-3-5-all-zip"><a href="#解压gradle-3-5-all-zip" class="headerlink" title="解压gradle-3.5-all.zip"></a>解压gradle-3.5-all.zip</h4><center><img src="/images/gradle-zip.png" alt="zip"></center><center><img src="/images/gradle-dir.png" alt="dir"></center><h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h4><h5 id="添加GRADLE-HOME环境变量"><a href="#添加GRADLE-HOME环境变量" class="headerlink" title="添加GRADLE_HOME环境变量"></a>添加GRADLE_HOME环境变量</h5><center><img src="/images/gradle-home.png" alt="home"></center><h5 id="环境变量Path追加-GRADLE-HOME-bin"><a href="#环境变量Path追加-GRADLE-HOME-bin" class="headerlink" title="环境变量Path追加%GRADLE_HOME%\bin;"></a>环境变量Path追加%GRADLE_HOME%\bin;</h5><center><img src="/images/gradle-path.png" alt="path"></center><h3 id="2-简单测试"><a href="#2-简单测试" class="headerlink" title="2.简单测试"></a>2.简单测试</h3><h4 id="vesion查看"><a href="#vesion查看" class="headerlink" title="vesion查看"></a>vesion查看</h4><center><img src="/images/gradle-version.png" alt="version"></center><h4 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h4><h5 id="新建build-gradle文件，在文件中添加下方代码："><a href="#新建build-gradle文件，在文件中添加下方代码：" class="headerlink" title="新建build.gradle文件，在文件中添加下方代码："></a>新建build.gradle文件，在文件中添加下方代码：</h5><p>task helloWorld &lt;&lt; {<br>     println “Hello World!”<br>}</p><center><img src="/images/gradle-hello.png" alt="hello"></center>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Gradle是一个基于JVM的构建工具，是一款通用灵活的构建工具，支持maven， Ivy仓库，支持传递性依赖管理，而不需要远程仓库或者是pom.xml和ivy.xml配置文件，基于Groovy，build脚本使用Groovy编写。&lt;/p&gt;
-&lt;p&gt;和Maven一样，Grad
       
     
     </summary>
