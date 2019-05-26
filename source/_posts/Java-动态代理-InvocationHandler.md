@@ -8,7 +8,6 @@ tags:
 categories:
   - Java
 ---
-### Java 动态代理 InvocationHandler
 Java动态代理机制中的核心类InvocationHandler和Proxy，是实现动态代理的核心。
 
 #### 1. InvocationHandler
