@@ -1,4 +1,4 @@
----
+﻿---
 title: Github2Hexo搭建
 date: 2017-05-12 12:57:48
 tags:
@@ -90,7 +90,7 @@ Enter same passphrase again: [Type passphrase again]
 ## hexo
 依赖git和nodeJs，安装好git，可以在git上面执行对应的安装指令
 ### 1. 安装 Node.js
-hexo生成架构师基于Node.js的，需要安装Node.js;如果不对其进行其他的学习的话，只需要根据小白法则，进行下一步一次安装即可；如果需要学习就需要找对应的教程进行学习，这里不对安装过程赘述。
+hexo生成基于Node.js的，需要安装Node.js;如果不对其进行其他的学习的话，只需要根据小白法则，进行下一步一次安装即可；如果需要学习就需要找对应的教程进行学习，这里不对安装过程赘述。
 ### 2. 安装hexo
 #### 2.1 验证git和nodeJs的安装
 ``` 
