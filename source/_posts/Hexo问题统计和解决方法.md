@@ -37,6 +37,7 @@ and the repository exists.
 3. 检查系统是否配置拥有Git的提交权限，没有权限，commit依然会被拒绝
 4. 一个比较新颖的解决方案，删除.deploy_git文件夹试试；问题原因是很长时间没有更新发布，hexo的版本可能更新升级或者其中用到的组件更新升级
 5. 如果用的是HTTPS的origin可以尝试把地址更换为SSH的origin url
+
 #### 2. 初试Hexo遇到的问题
 ##### 2.1 Hexo初始化的时候，提示如下错误？
 ```
