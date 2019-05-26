@@ -1,4 +1,4 @@
-mixin menus(menus)
+﻿mixin menus(menus)
   for value, key in menus
     if value.target
       a(target=value.target, href=value.href)= key
@@ -99,7 +99,7 @@ html
       script(src='https://static.duoshuo.com/embed.js')
         
     block footer
-    script(src='//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js')
+    script(src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js')
     script(src='https://imsun.github.io/gitment/dist/gitment.browser.js')
     //script.
     //  const gitment = new Gitment({
