@@ -76,6 +76,8 @@ tag_map:
   QUARTZ: quartz
   事物与锁: transaction
   Sum: sum
+  Proxy: proxy
+  反射: reflect
 
 #日期格式
 date_format: YYYY-MM-DD
