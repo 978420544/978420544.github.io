@@ -27,17 +27,15 @@ right_menus:
 ## Banners && Widgets
 banners:
   jade: |
-    a(href='https://github.com/978420544') 《斗破苍穹》三十年河西三十年河东，莫欺少年穷！
+    a(href='https://github.com/978420544')
 
 widgets:
   -
     markdown: |
-      阿甘，河南人，技术宅，生于1993,12,23。
+      Agreek，河南人，技术宅，生于1993,12,23。
 
       * 毕业于[郑州轻工业学院](http://www.zzuli.edu.cn/)
       * 一个努力前进的[菜鸟](https://github.com/978420544/Demo)
-      * 一个默默奋斗的潜力股
-      * 向着明天，一步一步的男人
       * 在 [Github](https://github.com/978420544) 上积极参与开源社区
       
   - categories: true
@@ -56,7 +54,7 @@ sns:
   qq: '978420544'
   qun: '61137226'
   v2ex: 'jybox'
-  mobile: '18321371259'
+  mobile: '1832*******'
   github: '978420544'
   keybase: '978420544'
   zhihu: '978420544'
