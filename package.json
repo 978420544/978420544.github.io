@@ -24,6 +24,6 @@
     "hexo-server": "^0.2.0",
     "hexo-theme-simpleblock": "^0.2.1",
     "jade": "^1.11.0",
-    "marked": "^0.3.6"
+    "marked": "^4.0.10"
   }
 }
